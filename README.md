@@ -1,55 +1,57 @@
-# No binary [[14,3,d≥5]] quantum stabilizer code exists
+# No binary `[[14,3,d≥5]]` quantum stabilizer code exists
 
 **Brandon Li · 2026 · Quantum error-correcting codes**
 
-A computer-assisted nonexistence proof for a binary quantum stabilizer code encoding three logical qubits in fourteen physical qubits with distance at least five. Together with the known `[[14,3,4]]` construction, the proposed theorem determines the exact stabilizer-code bound `d_max(14,3)=4`.
+The authoritative manuscript is the PDF, titled *No binary `[[14,3,d≥5]]` quantum stabilizer code exists*, with subtitle *A signed-shadow proof and exhaustive additive-code classification*. Its scope is binary qubit stabilizer codes, including degenerate codes; it makes no claim about non-stabilizer codes.
 
-**[Read the paper (PDF)](output/pdf/QEC1435_NO_BINARY_14_3_5.pdf)** · [Manuscript source](paper/QEC1435_NO_BINARY_14_3_5.md) · [Computational supplement](paper/COMPUTATIONAL_SUPPLEMENT.md)
+The matching text input is retained only to rebuild the PDF in the same presentation. The mathematical results and section structure follow the PDF.
 
-## The result
+## Reproduce the proof
 
-The proof addresses **binary qubit stabilizer codes** at these parameters, including pure and degenerate codes. It does **not** rule out general non-stabilizer quantum codes.
+The paper's archived code snapshot is commit `c14d6dadf2c5f902d9c149ed992fbac54b63596e`. To reproduce that snapshot from a clean checkout:
 
-The argument has three stages:
+```sh
+git clone https://github.com/brandonlign/quantum-code-bounds.git
+cd quantum-code-bounds
+git checkout c14d6dadf2c5f902d9c149ed992fbac54b63596e
+```
 
-1. **Signed-shadow constraints** and exact infeasibility certificates restrict low-weight stabilizers to a unique weight-four check.
-2. **Symplectic reduction** shows that a hypothetical code would induce a length-ten additive code of size 1,024, distance at least five, and hull dimension four.
-3. **Exhaustive classification and a Hall obstruction** exclude all 37 relevant length-ten additive-code classes: 25 have the wrong hull dimension, and each of the remaining 12 violates a necessary physical coset-capacity bound.
+The default replay requires Python 3.10 or later and Node.js with ES modules and `BigInt`. From the repository root, run:
 
-The paper distinguishes necessary relaxations from sufficient conditions. Exact certificates and the reconstructed class representatives are included.
-
-## Reproduce the computations
-
-Requirements: **CPython 3.10+** and **Node.js** with BigInt and ESM support. Run from the repository root:
-
-```bash
+```sh
 bash experiments/qec1435_replay_nonexistence.sh
 ```
 
-The default replay verifies exact identities and certificates, saved 37-class representatives, and hull/Hall exclusions. To regenerate the equivalence-class census:
+This checks the exact signed-shadow identities, physical subgroup cosets, integer Farkas certificates, physical-lift controls, and the committed 37 additive-code representatives with their hull and Hall audits. It does not regenerate the exhaustive length-ten census.
 
-```bash
+To regenerate the full census, install the pinned dependency and run:
+
+```sh
 python3 -m pip install -r requirements-qec1435.txt
 bash experiments/qec1435_replay_nonexistence.sh --census
 ```
 
-The full census is substantially more resource-intensive than the default replay. The [computational supplement](paper/COMPUTATIONAL_SUPPLEMENT.md) maps proof obligations to verifiers and data. The reproducibility snapshot referenced by the manuscript is commit [`ad8656883957975fc429895e64fbb497c480cba4`](https://github.com/brandonlign/quantum-code-bounds/tree/ad8656883957975fc429895e64fbb497c480cba4).
+The census uses nauty through `pynauty==2.8.8.1`. It regenerates the representative and class-audit JSON files. The census has one exhaustive implementation; the JavaScript checks independently audit the stored representatives and physical cosets but do not regenerate all equivalence classes.
 
-To regenerate and mechanically check the manuscript PDF (requires ReportLab and Poppler utilities):
+## Rebuild the paper PDF
 
-```bash
+The PDF is rendered from `paper/QEC1435_NO_BINARY_14_3_5.source.md`. To rebuild and mechanically preflight it, install the pinned rendering dependency and Poppler utilities (`pdfinfo`, `pdffonts`, and `pdftotext`), then run:
+
+```sh
 python3 -m pip install -r requirements-qec1435.txt
 bash paper/build_pdf.sh
 ```
+
+`paper/test_math_rendering.py` checks the renderer’s equation, link, and pagination handling. The preflight checks the PDF metadata, fonts, extracted text, and its single pinned code-archive link.
 
 ## Repository map
 
 | Location | Contents |
 | --- | --- |
-| [Paper PDF](output/pdf/QEC1435_NO_BINARY_14_3_5.pdf) | Readable statement and proof |
-| [Manuscript source](paper/QEC1435_NO_BINARY_14_3_5.md) | Mathematical text |
-| [Computational supplement](paper/COMPUTATIONAL_SUPPLEMENT.md) | Proof-obligation and certificate index |
-| [`experiments/`](experiments/) | Exact verifiers, independent checks, class generators, and audit data |
-| [`research/`](research/) | Supporting algebraic development notes |
+| `output/pdf/QEC1435_NO_BINARY_14_3_5.pdf` | Authoritative paper |
+| `paper/QEC1435_NO_BINARY_14_3_5.source.md` | Synchronized input used to rebuild the paper’s presentation |
+| `paper/build_nonexistence_pdf.py` | PDF renderer |
+| `experiments/` | Exact certificate verifiers, census, generator representatives, and audit data |
+| `research/` | Dated mathematical derivations and the current verification-boundary record |
 
-**Verification scope:** computational certificates and class data have been replayed, but successful computation does not substitute for specialist review of the mathematical reductions and completeness arguments.
+The default replay and full census are distinct verification levels. The known review boundary, including the need for independent specialist review and a second exhaustive census implementation, is recorded in `research/UNRESOLVED_GAPS.md`.

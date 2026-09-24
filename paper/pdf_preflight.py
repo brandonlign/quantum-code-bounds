@@ -8,7 +8,6 @@ Without them the test cannot certify PDF font embedding / extracted paper text.
 """
 from __future__ import annotations
 
-import os
 import re
 import shutil
 import subprocess
@@ -65,6 +64,17 @@ def main() -> int:
         elif not 1 <= int(pages.group(1)) <= 40:
             errors.append(f"Unexpected PDF page count: {pages.group(1)}")
 
+        urls = run(["pdfinfo", "-url", str(p)])
+        if urls is not None:
+            archive_url = (
+                "https://github.com/brandonlign/quantum-code-bounds/archive/"
+                "c14d6dadf2c5f902d9c149ed992fbac54b63596e.zip"
+            )
+            all_urls = re.findall(r"https?://\S+", urls)
+            github_urls = [url for url in all_urls if url.startswith("https://github.com/")]
+            if github_urls != [archive_url]:
+                errors.append("PDF must contain exactly one link to the pinned code archive")
+
     fonts = run(["pdffonts", str(p)])
     if fonts is not None:
         print("FONT AUDIT")
@@ -86,11 +96,12 @@ def main() -> int:
         expected = {
             "author name": "Brandon Li",
             "abstract": "Abstract",
+            "subtitle": "A signed-shadow proof and exhaustive additive-code classification",
             "one-proof conclusion": "Conclusion",
             "references": "References",
-            "AI disclosure": "AI-assisted tools",
             "complete additive census": "37",
             "Hall obstruction": "Hall",
+            "code archive link label": "immutable code archive",
         }
         for label, needle in expected.items():
             if needle.casefold() not in txt.casefold():
@@ -101,8 +112,11 @@ def main() -> int:
             "The proof is TBD",
             "frozen repository snapshot",
             "A green certificate",
+            "COMPUTATIONAL_SUPPLEMENT",
+            "AI-assisted tools",
+            "experiments/",
         )):
-            errors.append("Internal source note / placeholder found in PDF")
+            errors.append("Stale file reference, disclosure or internal placeholder found in PDF")
         if re.search(r"\brhs\s+⟨\s*0\b", txt):
             errors.append("Strict inequality was rendered as a left angle bracket; fix math renderer")
         print(f"Extractable text chars: {len(txt):,}")

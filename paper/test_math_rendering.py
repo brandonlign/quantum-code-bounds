@@ -47,22 +47,15 @@ assert all("<br/>" not in paragraph.text for paragraph in equations)
 print("PASS: multiline equations are separate flowables with clear line spacing")
 
 # Protect ordinary prose from conversion to a mathematical intersection sign.
-from build_nonexistence_pdf import inline_markup, build_table
-from reportlab.platypus import KeepTogether, LongTable
+from build_nonexistence_pdf import inline_markup
+from reportlab.platypus import KeepTogether
 assert "intersecting pairs" in inline_markup("two intersecting pairs")
-
-# The proof-data manifest must remain readable at full-page width; retain
-# all five source fields but render them as a two-column certificate ledger.
-manifest = [
-    "| mathematical obligation | physical relaxation or finite object | verifier | saved certificate or data | expected exact result |",
-    "|---|---|---|---|---|",
-    "| shadow parity | affine shadow | `experiments/qec1435_shadow_parity_certificate.py` | exact integers | parity obstruction |",
-]
-ledger = build_table([manifest[0], manifest[2]], styles, 480)
-assert isinstance(ledger, LongTable)
-assert len(ledger._cellvalues[0]) == 2
-assert len(ledger._cellvalues[1]) == 2
-assert ledger._colWidths[1] >= 350
+archive_link = inline_markup(
+    "[immutable code archive](https://github.com/brandonlign/"
+    "quantum-code-bounds/archive/c14d6dadf2c5f902d9c149ed992fbac54b63596e.zip)"
+)
+assert '<link href="https://github.com/brandonlign/' in archive_link
+assert "immutable code archive" in archive_link
 
 census = """| length `n` | checked binary dimensions `k: count` |
 |---:|---|
@@ -71,7 +64,7 @@ census = """| length `n` | checked binary dimensions `k: count` |
 """
 flowables = parse_markdown(census, styles, 480)
 assert any(isinstance(x, KeepTogether) for x in flowables)
-print("PASS: prose, readable certificate manifest and unbroken census table")
+print("PASS: prose, linked archive and unbroken census table")
 
 # A blank source line must not break a section heading's keepWithNext.
 heading_sample = """## References

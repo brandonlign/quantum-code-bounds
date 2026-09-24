@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import re
 from pathlib import Path
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape, quoteattr
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
@@ -25,7 +25,6 @@ from reportlab.platypus import (
     HRFlowable,
     LongTable,
     KeepTogether,
-    PageBreak,
     Paragraph,
     Preformatted,
     SimpleDocTemplate,
@@ -226,11 +225,18 @@ def inline_markup(text: str) -> str:
         protected.append(value)
         return token
 
-    # Relative repository links are intentionally rendered as readable labels;
-    # external DOI links remain visible through their label in the PDF text.
+    # Keep repository-relative links as labels in the print version. External
+    # references remain clickable PDF annotations.
+    def render_link(match: re.Match[str]) -> str:
+        label = escape(match.group(1))
+        target = match.group(2).strip()
+        if target.startswith(("https://", "http://")):
+            return protect(f"<link href={quoteattr(target)}>{label}</link>")
+        return protect(label)
+
     text = re.sub(
         r"\[([^\]]+)\]\(([^)]+)\)",
-        lambda match: protect(escape(match.group(1))),
+        render_link,
         text,
     )
     text = re.sub(
@@ -276,44 +282,7 @@ def is_table_separator(line: str) -> bool:
 
 
 def build_table(lines: list[str], styles: dict[str, ParagraphStyle], width: float) -> LongTable:
-    # A five-column, citation-heavy certificate manifest is unreadable on
-    # letter paper. Preserve every source cell but display each obligation in
-    # two generous columns, with clearly labelled object/files/results.
     raw_rows = [table_row(line) for line in lines]
-    if raw_rows and len(raw_rows[0]) == 5 and raw_rows[0][0] == "mathematical obligation":
-        formatted = [[
-            Paragraph("Proof obligation", styles["ManifestHead"]),
-            Paragraph("Certificate and exact result", styles["ManifestHead"]),
-        ]]
-        for row in raw_rows[1:]:
-            if len(row) != 5:
-                raise ValueError("Malformed certificate manifest row")
-            obligation, finite_object, verifier, saved_data, expected = row
-            details = (
-                "<b>Object:</b> " + inline_markup(finite_object)
-                + "<br/><b>Verifier:</b> " + inline_markup(verifier)
-                + "<br/><b>Certificate/data:</b> " + inline_markup(saved_data)
-                + "<br/><b>Result:</b> " + inline_markup(expected)
-            )
-            formatted.append([
-                Paragraph(inline_markup(obligation), styles["ManifestLabel"]),
-                Paragraph(details, styles["ManifestText"]),
-            ])
-        table = LongTable(
-            formatted, colWidths=[width * 0.25, width * 0.75],
-            repeatRows=1, hAlign="LEFT",
-        )
-        table.setStyle(TableStyle([
-            ("LINEABOVE", (0, 0), (-1, 0), 0.65, colors.black),
-            ("LINEBELOW", (0, 0), (-1, 0), 0.45, colors.black),
-            ("LINEBELOW", (0, -1), (-1, -1), 0.45, colors.black),
-            ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 4),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 4),
-            ("TOPPADDING", (0, 0), (-1, -1), 5),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
-        ]))
-        return table
     column_count = max(len(row) for row in raw_rows)
     rows = [row + [""] * (column_count - len(row)) for row in raw_rows]
 
@@ -513,32 +482,6 @@ def make_styles() -> dict[str, ParagraphStyle]:
             spaceBefore=2,
             spaceAfter=7,
         ),
-        "ManifestHead": ParagraphStyle(
-            "QECManifestHead",
-            parent=base["BodyText"],
-            fontName="QECBody-Bold",
-            fontSize=9,
-            leading=11.5,
-            textColor=colors.black,
-        ),
-        "ManifestLabel": ParagraphStyle(
-            "QECManifestLabel",
-            parent=base["BodyText"],
-            fontName="QECBody-Bold",
-            fontSize=8.6,
-            leading=11.8,
-            textColor=colors.black,
-            splitLongWords=True,
-        ),
-        "ManifestText": ParagraphStyle(
-            "QECManifestText",
-            parent=base["BodyText"],
-            fontName="QECBody",
-            fontSize=8.8,
-            leading=12,
-            textColor=colors.black,
-            splitLongWords=True,
-        ),
         "TableHead": ParagraphStyle(
             "QECTableHead",
             parent=base["BodyText"],
@@ -580,13 +523,7 @@ def parse_markdown(
                 if front and text == "**Brandon Li**":
                     style_name = "Author"
                 paragraph_flowable = Paragraph(inline_markup(text), styles[style_name])
-                # Keep the final scope paragraph intact so the page break does
-                # not leave a one-line fragment at the top of the next page.
-                if text.startswith("No `GF(4)`-linear restriction"):
-                    flowables.append(PageBreak())
-                    flowables.append(paragraph_flowable)
-                else:
-                    flowables.append(paragraph_flowable)
+                flowables.append(paragraph_flowable)
             paragraph.clear()
 
     while index < len(lines):
@@ -760,7 +697,7 @@ def main() -> None:
     parser.add_argument(
         "--source",
         type=Path,
-        default=REPO_ROOT / "paper/QEC1435_NO_BINARY_14_3_5.md",
+        default=REPO_ROOT / "paper/QEC1435_NO_BINARY_14_3_5.source.md",
     )
     parser.add_argument(
         "--output",

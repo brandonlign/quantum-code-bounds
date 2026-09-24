@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-SOURCE="paper/QEC1435_NO_BINARY_14_3_5.md"
+SOURCE="paper/QEC1435_NO_BINARY_14_3_5.source.md"
 PDF="output/pdf/QEC1435_NO_BINARY_14_3_5.pdf"
 PYTHON_BIN="${QEC_PYTHON_BIN:-python3}"
 
