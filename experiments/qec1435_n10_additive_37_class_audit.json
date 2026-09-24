@@ -1,0 +1,1270 @@
+{
+  "ambient_four_deep_hole_gate_counts": {
+    "false": 33,
+    "true": 4
+  },
+  "class_count": 37,
+  "classes": [
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 1,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 50,
+        "5": 100,
+        "6": 142,
+        "7": 232,
+        "8": 287,
+        "9": 212
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 2,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 98,
+        "6": 148,
+        "7": 228,
+        "8": 283,
+        "9": 218
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 3,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 51,
+        "5": 95,
+        "6": 163,
+        "7": 198,
+        "8": 313,
+        "9": 203
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 2,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 586
+        }
+      },
+      "class": 4,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 55,
+        "5": 103,
+        "6": 135,
+        "7": 230,
+        "8": 305,
+        "9": 195
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 5,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 50,
+        "5": 100,
+        "6": 142,
+        "7": 232,
+        "8": 287,
+        "9": 212
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 6,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 51,
+        "5": 95,
+        "6": 163,
+        "7": 198,
+        "8": 313,
+        "9": 203
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 7,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 51,
+        "5": 95,
+        "6": 163,
+        "7": 198,
+        "8": 313,
+        "9": 203
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 8,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 45,
+        "5": 93,
+        "6": 165,
+        "7": 210,
+        "8": 285,
+        "9": 225
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 9,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 39,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 3,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 585
+        }
+      },
+      "class": 10,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 90,
+        "6": 180,
+        "7": 180,
+        "8": 315,
+        "9": 210
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 11,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 90,
+        "6": 180,
+        "7": 180,
+        "8": 315,
+        "9": 210
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 4,
+        "four_deep_hole_necessary_gate": true,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 584
+        }
+      },
+      "class": 12,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 13,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 90,
+        "6": 180,
+        "7": 180,
+        "8": 315,
+        "9": 210
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 14,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 39,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 15,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          true,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 27,
+          "3": 36
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 16,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 45,
+        "5": 93,
+        "6": 165,
+        "7": 210,
+        "8": 285,
+        "9": 225
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 6,
+        "four_deep_hole_necessary_gate": true,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 582
+        }
+      },
+      "class": 17,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 18,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 90,
+        "6": 180,
+        "7": 180,
+        "8": 315,
+        "9": 210
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 19,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 20,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 35,
+          "3": 27,
+          "4": 1
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 3,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 585
+        }
+      },
+      "class": 21,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 22,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          true,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 23,
+          "3": 40
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 23,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 48,
+        "5": 90,
+        "6": 180,
+        "7": 180,
+        "8": 315,
+        "9": 210
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 3,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 585
+        }
+      },
+      "class": 24,
+      "distance": 5,
+      "hull_dimension": 8,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 30,
+        "5": 108,
+        "6": 90,
+        "7": 360,
+        "8": 135,
+        "9": 300
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 25,
+      "distance": 5,
+      "hull_dimension": 0,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 45,
+        "5": 93,
+        "6": 165,
+        "7": 210,
+        "8": 285,
+        "9": 225
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 26,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "2": 35,
+          "3": 27,
+          "4": 1
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 42,
+        "5": 96,
+        "6": 150,
+        "7": 240,
+        "8": 255,
+        "9": 240
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 27,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 28,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 2,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 586
+        }
+      },
+      "class": 29,
+      "distance": 5,
+      "hull_dimension": 6,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 38,
+        "5": 100,
+        "6": 130,
+        "7": 280,
+        "8": 215,
+        "9": 260
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 30,
+      "distance": 5,
+      "hull_dimension": 6,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 38,
+        "5": 100,
+        "6": 130,
+        "7": 280,
+        "8": 215,
+        "9": 260
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 31,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 3,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 585
+        }
+      },
+      "class": 32,
+      "distance": 5,
+      "hull_dimension": 8,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 30,
+        "5": 108,
+        "6": 90,
+        "7": 360,
+        "8": 135,
+        "9": 300
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 3,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 0,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 588
+        }
+      },
+      "class": 33,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 44,
+        "5": 94,
+        "6": 160,
+        "7": 220,
+        "8": 275,
+        "9": 230
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 4,
+        "four_deep_hole_necessary_gate": true,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 584
+        }
+      },
+      "class": 34,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 3,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 585
+        }
+      },
+      "class": 35,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 1,
+        "four_deep_hole_necessary_gate": false,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 587
+        }
+      },
+      "class": 36,
+      "distance": 5,
+      "hull_dimension": 2,
+      "physical_lift": {
+        "status": "NOT APPLICABLE: symplectic hull dimension is not 4"
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    },
+    {
+      "ambient_four_deep_hole_gate": {
+        "covering_radius": 4,
+        "d": 5,
+        "distinct_C_cosets_min_distance_at_least_4": 4,
+        "four_deep_hole_necessary_gate": true,
+        "radius3": {
+          "0": 1,
+          "1": 30,
+          "2": 405,
+          "3": 584
+        }
+      },
+      "class": 37,
+      "distance": 5,
+      "hull_dimension": 4,
+      "physical_lift": {
+        "Hall_capacity": [
+          true,
+          false,
+          false
+        ],
+        "admissible_all_Z_lagrangian_patterns": 0,
+        "distance": 5,
+        "hull_dim": 4,
+        "lagrangian_affine_hole_gate": false,
+        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "suffix_class_spectrum": {
+          "0": 1,
+          "1": 2,
+          "2": 37,
+          "3": 24
+        }
+      },
+      "weight_distribution": {
+        "0": 1,
+        "10": 46,
+        "5": 92,
+        "6": 170,
+        "7": 200,
+        "8": 295,
+        "9": 220
+      }
+    }
+  ],
+  "hull_dimension_counts": {
+    "0": 7,
+    "2": 14,
+    "4": 12,
+    "6": 2,
+    "8": 2
+  },
+  "input": "experiments/qec1435_n10_additive_37_generators_xy.json",
+  "physical_lift_status_counts": {
+    "NO LIFT: EXACT 64-CLASS HALL NECESSITY": 12,
+    "NOT APPLICABLE: symplectic hull dimension is not 4": 25
+  }
+}

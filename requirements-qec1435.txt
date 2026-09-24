@@ -1,0 +1,4 @@
+# Dependencies for the nonexistence proof replay and manuscript PDF.
+# The exact certificate verifiers otherwise use only the Python standard library.
+pynauty==2.8.8.1
+reportlab==4.4.9

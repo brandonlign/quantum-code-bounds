@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use the theorem, code, or exact certificates, please cite the manuscript and the archived repository version."
+title: "No binary [[14,3,d≥5]] quantum stabilizer code exists: proof code and certificates"
+type: software
+authors:
+  - family-names: Li
+    given-names: Brandon
+url: "https://github.com/brandonlign/quantum-code-bounds"
+abstract: "Exact verification code, Farkas certificates, reconstructed additive-code representatives, and a manuscript supporting a computer-assisted nonexistence proof for binary [[14,3,d≥5]] stabilizer codes."
+keywords:
+  - quantum error correction
+  - stabilizer codes
+  - additive codes
+  - coding theory
+  - computational proof
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: Li
+      given-names: Brandon
+  title: "No binary [[14,3,d≥5]] quantum stabilizer code exists"
+  year: 2026
