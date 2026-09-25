@@ -3,8 +3,7 @@
 
 Usage: python3 paper/pdf_preflight.py /path/to/QEC1435_NO_BINARY_14_3_5.pdf
 
-Uses optional Poppler commands pdfinfo, pdffonts, pdftotext when installed.
-Without them the test cannot certify PDF font embedding / extracted paper text.
+Requires the Poppler commands pdfinfo, pdffonts, and pdftotext for a full check.
 """
 from __future__ import annotations
 

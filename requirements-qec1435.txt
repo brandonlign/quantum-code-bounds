@@ -1,4 +1,3 @@
-# Dependencies for the nonexistence proof replay and manuscript PDF.
-# The exact certificate verifiers otherwise use only the Python standard library.
+# Optional dependency for regenerating the additive-code census.
+# Exact proof replay uses Python's standard library and Node.js.
 pynauty==2.8.8.1
-reportlab==4.4.9

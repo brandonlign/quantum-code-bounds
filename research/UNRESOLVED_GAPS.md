@@ -1,6 +1,6 @@
 # Mathematical gap and review record
 
-Audit date: 24 September 2026. This file records the proof checks and remaining verification boundary for `output/pdf/QEC1435_NO_BINARY_14_3_5.pdf`. The PDF is authoritative; `paper/QEC1435_NO_BINARY_14_3_5.source.md` is retained only as its rendering input.
+Audit date: 24 September 2026. This file records the proof checks and remaining verification boundary for `output/pdf/QEC1435_NO_BINARY_14_3_5.pdf`. The authoritative manuscript source is `paper/QEC1435_NO_BINARY_14_3_5.tex`; Tectonic compiles it to the PDF.
 
 The repository cleanup reran the default exact replay against the committed representatives and class-audit data. It did not rerun the full lengthening census; the census result below is from the earlier full-census run.
 
@@ -32,4 +32,4 @@ These are review and computational-trust limits, not a specific counterexample o
 
 `QEC1435_SINGLECHECK_SURJECTIVITY_HULL4_2026-09-20.md` records the state of the work on 20 September, when the exact hull-four reduction had been established but the rank-six lift obstruction was still described as open. The later class audit and Hall-capacity argument in the present manuscript close that finite lift obstruction for all 12 hull-four classes. The note is retained as research history; its open-status language is superseded by the present working proof and should not be read as current manuscript status.
 
-The earlier open-status wording in the dated research note is historical and is superseded by the PDF's length-ten classification and Hall-capacity exclusion. No separate computational supplement is maintained; the PDF points once to the immutable code archive, and the repository README gives reproduction instructions.
+The earlier open-status wording in the dated research note is historical and is superseded by the paper's length-ten classification and Hall-capacity exclusion. No separate computational supplement is maintained; the paper points once to the immutable code archive, and the repository README gives reproduction instructions.
