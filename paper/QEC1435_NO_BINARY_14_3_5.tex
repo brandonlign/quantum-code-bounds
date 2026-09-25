@@ -863,7 +863,7 @@ The proof is specific to these parameters and to the stabilizer family; it gives
 
 \section{Computational material}\label{computational-material}
 
-The proof uses exact integer certificates for the necessary split-weight systems and an exhaustive classification of length-ten additive codes. The default replay checks the coefficient identities, Farkas multipliers, physical coset models, saved class representatives and Hall obstructions. It uses the committed representatives; the full lengthening census is a separate, more resource-intensive run. The archived package contains the exact certificate data, generator matrices, verification programs and concise reproduction instructions. No floating-point feasibility result is used as a proof certificate. The complete computational record is in the \mbox{\href{https://github.com/brandonlign/quantum-code-bounds/archive/c14d6dadf2c5f902d9c149ed992fbac54b63596e.zip}{immutable code archive}}.
+The proof uses exact integer certificates for the split-weight systems and an exhaustive classification of length-ten additive codes. The verification scripts check the coefficient identities, Farkas multipliers, physical coset models, saved class representatives, and Hall obstructions. The default verification uses the saved representatives rather than rerunning the more computationally expensive lengthening census. No floating-point feasibility calculation serves as a certificate. The certificate data, generator matrices, verification scripts, and reproduction instructions are available in the \href{https://github.com/brandonlign/quantum-code-bounds}{project repository}.
 
 
 \begin{thebibliography}{99}

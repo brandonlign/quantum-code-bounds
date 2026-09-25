@@ -65,14 +65,11 @@ def main() -> int:
 
         urls = run(["pdfinfo", "-url", str(p)])
         if urls is not None:
-            archive_url = (
-                "https://github.com/brandonlign/quantum-code-bounds/archive/"
-                "c14d6dadf2c5f902d9c149ed992fbac54b63596e.zip"
-            )
+            repository_url = "https://github.com/brandonlign/quantum-code-bounds"
             all_urls = re.findall(r"https?://\S+", urls)
             github_urls = [url for url in all_urls if url.startswith("https://github.com/")]
-            if github_urls != [archive_url]:
-                errors.append("PDF must contain exactly one link to the pinned code archive")
+            if github_urls != [repository_url]:
+                errors.append("PDF must contain exactly one link to the project repository")
 
     fonts = run(["pdffonts", str(p)])
     if fonts is not None:
@@ -100,7 +97,7 @@ def main() -> int:
             "references": "References",
             "complete additive census": "37",
             "Hall obstruction": "Hall",
-            "code archive link label": "immutable code archive",
+            "repository link label": "project repository",
         }
         for label, needle in expected.items():
             if needle.casefold() not in txt.casefold():
