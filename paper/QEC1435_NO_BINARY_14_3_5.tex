@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[margin=0.85in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{booktabs,longtable,tabularx,array,enumitem,microtype}
+\usepackage{booktabs,longtable,tabularx,array,enumitem,microtype,needspace}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \pdfstringdefDisableCommands{\def\ensuremath#1{#1}\def\geq{≥}}
@@ -256,27 +256,19 @@ L &=E_{0} -2E_{1} -6E_{2} -17E_{3} -95E_{4} \\
 \end{aligned}
 \]
 
-The equations give \(L=2048\). Direct expansion gives the coefficients on \(A_{0},\dots,A_{14}\) as
-
-\[
-\begin{bmatrix}-4550656 \\-7348224 \\-1052672 \\-2623488 \\321536 \\-634880 \\221184 \\-28672 \\24576 \\24576 \\-45056 \\0 \\40960 \\-16384 \\-77824
-\end{bmatrix}
-\]
-
-Modulo 4096 every coefficient vanishes except the coefficients of \(A_{3}\) and \(A_{4}\), each of which is 2048 modulo 4096. The coefficients of the four integer shadow variables are
+The equations give \(L=2048\). Writing \(c_j\) for the coefficient of \(A_j\), direct expansion gives
 
 \[
 \begin{aligned}
-[40960, 49152, -2269184, -503808],
+(c_0,\dots,c_{14})={}&(-4550656,-7348224,-1052672,-2623488,321536,\\
+&\qquad -634880,221184,-28672,24576,24576,\\
+&\qquad -45056,0,40960,-16384,-77824).
 \end{aligned}
 \]
 
-and are all divisible by 4096. Hence
-
+Modulo 4096 every coefficient vanishes except those of \(A_{3}\) and \(A_{4}\), each congruent to 2048. The four shadow-variable coefficients are \((40960, 49152, -2269184, -503808)\), all divisible by 4096. Since \(L=2048\), reduction modulo 4096 gives
 \[
-\begin{aligned}
-A_{3} + A_{4} &=1 \pmod 2.
-\end{aligned}
+A_{3}+A_{4}\equiv1\pmod 2.
 \]
 
 Together with \(A_{3}=0\) and \(0 \le A_{4} \le 3\), this gives
@@ -300,10 +292,11 @@ For each complete coset \(Q\) of \(R\) in \(R^\perp\), let
 \[
 \begin{aligned}
 p(Q)=(p_{0},\dots,p_{u}), \\
-p_{a} &=\#\{q \in Q : prefix physical weight(q)=a\}.
+p_{a} &=\#\{q \in Q : \operatorname{wt}_{\mathrm{pref}}(q)=a\}.
 \end{aligned}
 \]
 
+Here \(\operatorname{wt}_{\mathrm{pref}}\) is Pauli weight on the original prefix sites.
 Let \(y_{p,b}\) be the number of complete \(R\)-cosets selected by \(S\), aggregated over all suffix Pauli labels of physical weight \(b\), and grouped only by the prefix pattern \(p\). Then \(y_{p,b} \ge 0\) and
 
 \[
@@ -351,10 +344,11 @@ An exact certificate consists of nonnegative \(\lambda\), free-sign \(\nu\), and
 \[
 \begin{aligned}
 \lambda  &\ge  0, \\
-c &=\lambda G + \nu M  \ge  0 coefficientwise, \\
+c &=\lambda G + \nu M, \qquad c\geq 0, \\
 & \nu \cdot rhs < 0.
 \end{aligned}
 \]
+The inequality \(c\geq0\) is entrywise.
 
 For a putative feasible \(z\),
 
@@ -373,9 +367,10 @@ Suppose \(p=Z_{0} Z_{1}\) belongs to \(S\). Every weight-two Pauli label is loca
 
 \[
 \begin{aligned}
-(1,0,1) \text{once},   (0,2,0) \text{once},   (0,0,2) \text{twice}.
+(1,0,1)&:1, \qquad (0,2,0):1, \qquad (0,0,2):2.
 \end{aligned}
 \]
+The integers after the colons are the coset multiplicities.
 
 For every fixed suffix Pauli label, complete-coset closure therefore gives
 
@@ -405,11 +400,12 @@ For \(R=\langle \mathtt{ZZZ} \rangle\) on three original sites, the 16 normalize
 
 \[
 \begin{aligned}
-(0,0,1,1) \text{twelve times}, \\
-& (0,1,1,0) \text{three times}, \\
-& (1,0,0,1) \text{once}.
+(0,0,1,1)&:12, \\
+(0,1,1,0)&:3, \\
+(1,0,0,1)&:1.
 \end{aligned}
 \]
+Here each integer is the number of normalizer cosets with the indicated prefix-weight pattern.
 
 The exact dual satisfies the sign conditions of Section~5.2 on all 36 columns and has \(\nu \cdot rhs=-22528\). This also excludes a weight-three check, independently of Lemma~\ref{lem:low-weight}.
 
@@ -419,11 +415,12 @@ For \(R=\langle \mathtt{XXXX},\mathtt{ZZZZ} \rangle\) on four original sites, th
 
 \[
 \begin{aligned}
-(1,0,0,0,3) \text{once}, \\
-& (0,0,2,0,2) \text{nine times}, \\
-& (0,0,0,4,0) \text{six times}.
+(1,0,0,0,3)&:1, \\
+(0,0,2,0,2)&:9, \\
+(0,0,0,4,0)&:6.
 \end{aligned}
 \]
+The integers after the colons are the coset multiplicities.
 
 For every suffix weight \(b\),
 
@@ -497,25 +494,28 @@ Let \(p,q\) be distinct commuting weight-four stabilizer words. Let \(t\) be the
 
 The preceding subgroup exclusions remove every case with \(t \ge 2\):
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}rrl@{}}
-\toprule\noalign{}
+{\small
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{center}
+\begin{tabular}{@{}rrl@{}}
+\toprule
 \(t\) & \(h\) & physical obstruction \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
+\midrule
 4 & 2 & weight-two stabilizer \\
 4 & 4 & four-site Bell subgroup \\
 3 & 0 & weight-two stabilizer \\
 3 & 2 & five-site overlap subgroup \\
 2 & 0 & six-site same-letter triangle subgroup \\
 2 & 2 & six-site crossed-overlap subgroup \\
-\end{longtable}
+\bottomrule
+\end{tabular}
+\end{center}
 }
 
 The omitted case \(t=4,h=0\) would give the same Pauli word twice, not two distinct checks. Thus two distinct weight-four checks meet in at most one qubit. If they meet in one, commutation forces the same local Pauli letter there. Independent local Clifford transformations therefore map all weight-four checks to Z-only words simultaneously. This does not imply that the full stabilizer is CSS.
 
+\begin{minipage}{\linewidth}
 If \(A_{4}=3\), the three checks are independent, because the sum of two has physical weight six or eight, not four. Their support sets are pairwise disjoint or meet in one site. Up to physical site permutation and reordering of the checks, there are exactly five support patterns:
 
 {\small
@@ -532,6 +532,7 @@ one common site & \(\{0,1,2,3\};\{3,4,5,6\};\{3,7,8,9\}\) & 10 & \(6,6,6\) & 10 
 \bottomrule
 \end{tabularx}
 }
+\end{minipage}
 
 To see that the list is complete, record which of the three pairs of supports intersect. There can be zero, one, two, or three intersecting pairs. When exactly two pairs intersect, their intersection sites must be distinct: if both were the same, that site would lie in all three supports and the third pair would intersect too. When all three pairs intersect, either their three intersection sites differ or all three supports share one site. These are precisely the five cases above.
 
@@ -572,6 +573,7 @@ A_{1}=A_{2}=A_{3}=0,   A_{4}=3.
 \end{aligned}
 \]
 
+\Needspace{8\baselineskip}
 \subsection{\texorpdfstring{The disjoint \(4+4+4+2\) geometry}{The disjoint 4+4+4+2 geometry}}\label{the-disjoint-4442-geometry}
 
 The only possible \(A_{4}=3\) geometry left by Section 5.6 would be
@@ -603,7 +605,7 @@ pattern \((p_{0},p_{1},p_{2},p_{3},p_{4})\) & multiplicity \\
 
 For each of the three blocks and the two untouched physical sites, let \(y_{p,q,r,b}\) count complete \(R\)-cosets grouped by those literal patterns and suffix weight \(b\). There are \(6*6*6*3=648\) nonnegative variables. The grouping forgets the actual coset labels, suffix letters, and global linearity, so it is a necessary relaxation.
 
-The resulting split-weight system has 375 cells and 70 equalities. A Farkas certificate using the signed-shadow nonnegativity constraints gives
+The four-block split enumerator has \(5^3\cdot3=375\) cells, indexed by the three four-site block weights and the weight on the two untouched sites, and the system has 70 equalities. A Farkas certificate using the signed-shadow nonnegativity constraints gives
 
 \[
 \begin{aligned}
@@ -624,20 +626,13 @@ The parity restriction gives \(A_4\in\{1,3\}\), and Sections~5.3--5.7 exclude \(
 
 \section{Reduction to a ten-site additive code}\label{reduction-to-a-ten-site-additive-code}
 
+\Needspace{11\baselineskip}
 \begin{lemma}[Ten-site reduction]\label{lem:ten-site}
-Suppose \(S\leq V_{14}\) is isotropic of dimension 11, has \(d(S)\geq5\), and has a unique stabilizer word of weight four. Then there exists a binary subspace \(C\leq V_{10}\) of dimension 10, minimum Pauli weight at least five, and \(\dim(C\cap C^\perp)=4\).
+Suppose \(S\leq V_{14}\) is isotropic of dimension 11, has \(d(S)\geq5\), and its only nonzero stabilizer word of physical weight at most four is a word \(p\) of weight four. Equivalently, \(A_1=A_2=A_3=0\) and \(A_4=1\). Then there exists a binary subspace \(C\leq V_{10}\) of dimension 10, minimum Pauli weight at least five, and \(\dim(C\cap C^\perp)=4\).
 \end{lemma}
 \begin{proof}
 
-Let \(p\) be the unique weight-four stabilizer word. Physical local Clifford conjugation and a site permutation put
-
-\[
-\begin{aligned}
-p &=Z_{0} Z_{1} Z_{2} Z_{3},
-\end{aligned}
-\]
-
-on the first four original qubits. Write \(V_{4}\) for their Pauli space and \(W_{10}\) for the remaining ten-qubit Pauli space, so \(V_{14}=V_{4} \oplus W_{10}\).
+Let \(p\) be the unique weight-four stabilizer word. After physical local Clifford conjugation and a site permutation, assume \(p=Z_{0}Z_{1}Z_{2}Z_{3}\) on the first four original qubits. Write \(V_{4}\) for their Pauli space and \(W_{10}\) for the remaining ten-qubit Pauli space, so \(V_{14}=V_{4} \oplus W_{10}\).
 
 Define the physical six-dimensional quotient
 
@@ -649,7 +644,7 @@ E &=(p^\perp \cap V_{4}) / \langle p \rangle.
 
 The quotient is nondegenerate symplectic: \(p^\perp \cap V_{4}\) has binary dimension seven, and quotienting by its one-dimensional radical \(\langle p \rangle\) leaves dimension six.
 
-Since \(S \cap V_{4}=\langle p \rangle\), projection of \(S/\langle p \rangle\) to \(W_{10}\) is injective. Let its image be a binary ten-space \(P \le W_{10}\). Then there is a linear map \(T:P\to E\) such that
+By the hypothesis, \(S \cap V_{4}=\langle p \rangle\), so projection of \(S/\langle p \rangle\) to \(W_{10}\) is injective. Let its image be a binary ten-space \(P \le W_{10}\). Then there is a linear map \(T:P\to E\) such that
 
 \[
 \begin{aligned}
@@ -684,15 +679,13 @@ C &=P^\perp_{W}.
 \end{aligned}
 \]
 
-Then \(\dim C=10\), so \(\lvert C\rvert=1024\). If a nonzero \(c \in C\) had physical weight at most four, the suffix-only vector \((0,c)\) would be in \(S^\perp\) and distance would force it into \(S\); this would be either a nonzero stabilizer word of weight below four or a second weight-four word; both are excluded by Sections~4 and~5. Thus \(d(C) \ge 5\). Because \(C^\perp=P\),
+Then \(\dim C=10\), so \(\lvert C\rvert=1024\). If a nonzero \(c \in C\) had physical weight at most four, the suffix-only vector \((0,c)\) would be in \(S^\perp\), and distance would force it into \(S\). It cannot equal \(p\), since its prefix is zero; it would therefore be another nonzero stabilizer word of weight at most four, contrary to the hypothesis. Thus \(d(C) \ge 5\). Because \(C^\perp=P\),
 
 \[
 \begin{aligned}
 \dim(C \cap C^\perp_{W})=\dim(P \cap C)=4.
 \end{aligned}
 \]
-
-No \(\operatorname{GF}(4)\)-linearity assumption is used.
 
 \end{proof}
 
@@ -702,6 +695,7 @@ Let \(J=C \cap C^\perp_{W}\), so \(\dim J=4\), and let \(P=C^\perp_{W}\). The qu
 \[
 d(\xi)=\min_{c\in C}\operatorname{wt}(w+c).
 \]
+\begin{minipage}{\linewidth}
 The pairing
 \[
 (J^\perp_{W}/C)\times(P/J)\longrightarrow\mathbb{F}_{2},
@@ -709,6 +703,7 @@ The pairing
 (w+C,x+J)\longmapsto\langle w,x\rangle_{W}
 \]
 is well defined and nondegenerate: its left kernel is \(P^\perp_{W}=C\), and both quotient spaces have dimension six.
+\end{minipage}
 
 For each \(\xi=w+C\), there is a unique \(e(\xi)\in E\) such that
 \[
@@ -742,7 +737,7 @@ d(\xi)+\operatorname{cost}(e(\xi))\ge5
 \qquad(\xi\ne0).
 \]
 
-Every compatible graph map induces a symplectic isomorphism \(P/J\to E\), equivalently an ordered symplectic basis of \(E\). Before enumerating the \(1{,}451,520\) such bases, the bijection \(\xi\mapsto e(\xi)\) and the cost distribution give the physical Hall capacities
+Every compatible graph map induces a symplectic isomorphism \(P/J\to E\). The bijection \(\xi\mapsto e(\xi)\) and the cost distribution give the following necessary capacities without enumerating these isomorphisms:
 
 \[
 \begin{aligned}
@@ -801,7 +796,7 @@ The high-rate zero predecessor cells are explicitly installed and checked; they 
 
 \subsection{Exact equivalence certificates}\label{exact-equivalence-certificates}
 
-For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a codeword reorder, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). The final \texttt{pynauty} certificate is therefore an exact additive-monomial equivalence certificate; the weight and pair-rank invariants are only performance filters. The graph-isomorphism implementation is based on nauty {[}McKay and Piperno (2014){]}.
+For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a codeword reorder, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). The final \texttt{pynauty} certificate is therefore an exact additive-monomial equivalence certificate; the weight and pair-rank invariants are only performance filters. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}.
 
 \subsection{Hull and physical Hall results}\label{hull-and-physical-hall-results}
 
@@ -823,7 +818,7 @@ binary symplectic hull dimension & number of classes \\
 \end{longtable}
 }
 
-The 25 classes with hull dimension different from four cannot arise from Stage II. For the 12 hull-four classes, the exact physical quotient audit gives:
+The 25 classes with hull dimension different from four cannot arise from the code \(C\) required by Lemma~\ref{lem:ten-site}. For the 12 hull-four classes, the exact physical quotient audit gives:
 
 {\small
 \setlength{\tabcolsep}{4pt}
@@ -859,7 +854,7 @@ The first exclusion follows from the hull-dimension table. For every remaining c
 \section{Discussion and conclusion}\label{discussion-and-conclusion}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Assume a binary \(\left[\!\left[14,3,d\ge 5\right]\!\right]\) stabilizer exists. Sections~3 and~4 give \(A_{1}=A_{2}=A_{3}=0\), \(A_{4} \in \{1,3\}\). Sections~5.3--5.5 show that all overlapping weight-four support pairs are physically impossible and classify the three-check case into five support geometries. Section~5.6 excludes the four overlapping rank-three geometries, and Section~5.7 excludes the disjoint \(4+4+4+2\) geometry. Hence \(A_{4}=1\).
+Assume a binary \(\left[\!\left[14,3,d\ge 5\right]\!\right]\) stabilizer exists. Sections~3--4 give \(A_{1}=A_{3}=0\), \(A_{2}\leq2\), and \(A_{4}\in\{1,3\}\). Section~5.3 then excludes weight-two stabilizers, so \(A_{2}=0\). Sections~5.3--5.5 exclude all pairs of distinct weight-four checks whose supports intersect in at least two sites and classify the three-check case into five support geometries. Section~5.6 excludes the four overlapping rank-three geometries, and Section~5.7 excludes the disjoint \(4+4+4+2\) geometry. Hence \(A_{4}=1\).
 
 Lemma~\ref{lem:ten-site} forces a ten-site additive code of size 1,024, distance at least five, and hull dimension four. Section 7 exhausts the 37 equivalence classes of such ten-site additive codes and rejects every one: 25 by hull dimension and 12 by the physical Hall capacity. This is a contradiction.
 \end{proof}
