@@ -419,7 +419,7 @@ The Farkas certificate has 13 nonnegative inequality multipliers and 10 nonzero 
 \end{aligned}
 \]
 
-Thus \(A_{2}=0\) for every hypothetical code. Section~\ref{computational-material} gives the reproduction instructions and identifies both verification scripts.
+Thus \(A_{2}=0\) for every hypothetical code. The verification instructions linked in Section~\ref{computational-material} identify both scripts.
 
 \subsection{Excluding overlapping low-weight stabilizer words}\label{excluding-overlapping-low-weight-checks}
 
@@ -791,7 +791,7 @@ Grassl, Krotov, Sok, and Solé \cite{grassl-et-al} report 37 equivalence classes
 
 \subsection{Why the lengthening census is exhaustive for this cell}\label{why-the-lengthening-census-is-exhaustive-for-this-cell}
 
-The census builds additive codes one coordinate at a time. The projection argument shows that every code in the target class arises from one of the extension cases below.
+The recurrence starts from the zero code in the \((n,k)=(4,0)\) cell and builds additive codes one coordinate at a time. The projection argument shows that every code in the target class arises from one of the extension cases below.
 
 Let \(D\leq\mathbb{F}_2^{2(m+1)}\) be a target code of binary dimension \(k\), and project it onto its last two-bit coordinate. The image has binary dimension \(r\in\{0,1,2\}\); the kernel is a length-\(m\) parent code of binary dimension \(k-r\). Choose a basis of the image and lift its basis vectors to \(D\). Their old-coordinate parts determine \(r\) quotient classes modulo the parent. For \(r=1\), the nonzero class must have minimum old weight at least four. For \(r=2\), each of the three nonzero combinations of the two classes must have minimum old weight at least four. After a local \(\operatorname{GL}(2,2)\) change of basis, these are exactly the extensions below. Conversely, each listed extension has distance at least five whenever its parent has distance at least five and the stated coset minima are at least four.
 
