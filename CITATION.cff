@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use the theorem, code, or exact certificates, please cite the manuscript and the archived repository version."
+message: "If you use the theorem, code, or exact certificates, please cite the manuscript and this repository; identify a commit when reproducibility requires a fixed version."
 title: "No binary [[14,3,d≥5]] quantum stabilizer code exists: proof code and certificates"
 type: software
 authors:

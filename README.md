@@ -1,35 +1,55 @@
 # No binary `[[14,3,d≥5]]` quantum stabilizer code exists
 
-This repository contains the authoritative LaTeX manuscript, its compiled PDF, and the exact computational record for the nonexistence proof. The result concerns binary qubit stabilizer codes, including degenerate codes; it makes no claim about non-stabilizer codes.
+**Brandon Li · 2026 · Quantum error-correcting codes**
 
-## Paper
+This repository contains the LaTeX manuscript and exact computational evidence for the claimed nonexistence of a binary `[[14,3,d≥5]]` qubit stabilizer code. The argument includes degenerate stabilizer codes, does not address non-stabilizer codes, and does not assume GF(4)-linearity.
 
-- Source: [`paper/QEC1435_NO_BINARY_14_3_5.tex`](paper/QEC1435_NO_BINARY_14_3_5.tex)
-- PDF: [`output/pdf/QEC1435_NO_BINARY_14_3_5.pdf`](output/pdf/QEC1435_NO_BINARY_14_3_5.pdf)
+## Manuscript
 
-To rebuild the PDF, install Tectonic, Python 3.10 or newer, and Poppler (`pdfinfo`, `pdffonts`, and `pdftotext`), then run:
+- [Read the paper (PDF)](output/pdf/QEC1435_NO_BINARY_14_3_5.pdf)
+- [LaTeX source](paper/QEC1435_NO_BINARY_14_3_5.tex)
 
-```sh
-bash paper/build_pdf.sh
-```
+The proof derives signed-shadow constraints and exact Farkas certificates, reduces a hypothetical code to a ten-site additive code of binary dimension ten and symplectic hull dimension four, and excludes the 37 relevant additive-code classes by hull dimension or a necessary physical coset-capacity bound.
 
-## Reproduce the proof
+## Verify the computational evidence
 
-From a clone of this repository, run the standard exact replay at its root:
+From the repository root, run the standard exact replay (Python 3.10+, Node.js, and Git required):
 
 ```sh
 bash experiments/qec1435_replay_nonexistence.sh
 ```
 
-The replay requires Python 3.10 or newer and Node.js. It verifies the signed-shadow identities, physical subgroup cosets, exact Farkas certificates, ten-site control cases, the 37 committed additive-code representatives, and their hull and coset-capacity audits. It uses the committed representatives and does not regenerate their exhaustive classification. Replay outputs are temporary; the committed certificate and representative data are not rewritten.
+The replay checks the exact certificate arithmetic and audits the 37 committed length-ten representatives. It does not regenerate the exhaustive classification.
 
-To reconstruct the length-ten classification, install the pinned optional dependency and run the census mode:
+To regenerate the classification, install the pinned optional dependency and run census mode:
 
 ```sh
 python3 -m pip install -r requirements-qec1435.txt
 bash experiments/qec1435_replay_nonexistence.sh --census
 ```
 
-The census mode performs the standard exact replay, then regenerates the classification using `pynauty==2.8.8.1`. Its generated representatives and audit output are temporary and do not replace the committed data.
+The census uses `pynauty==2.8.8.1`. It writes generated representatives and audit output to a temporary directory; it does not replace committed data. The census was run during the final manuscript audit, but is not part of the standard replay.
 
-[`VERIFICATION.md`](VERIFICATION.md) documents the proof replay, certificate locations, census recurrence, and verification limits. The pinned dependency is listed in [`requirements-qec1435.txt`](requirements-qec1435.txt).
+[`VERIFICATION.md`](VERIFICATION.md) describes the checks, their limits, and the computational data map.
+
+## Build the PDF
+
+Requires Tectonic, Python 3.10+, and Poppler (`pdfinfo`, `pdffonts`, and `pdftotext`):
+
+```sh
+bash paper/build_pdf.sh
+```
+
+The build compiles the LaTeX source and checks PDF metadata, page count, link annotations, embedded fonts, and extractable text. It does not replace visual inspection or mathematical review.
+
+## Repository contents
+
+| Path | Purpose |
+| --- | --- |
+| `paper/` | LaTeX manuscript and PDF build/preflight scripts |
+| `output/pdf/` | Compiled manuscript |
+| `experiments/` | Exact verifiers, arithmetic audits, census generator, and certificate data |
+| `requirements-qec1435.txt` | Pinned optional census dependency |
+| `VERIFICATION.md` | Reproducibility scope and review boundary |
+
+For citation details, see [`CITATION.cff`](CITATION.cff).

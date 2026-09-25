@@ -32,6 +32,6 @@ These are review and computational-trust limits, not a specific counterexample o
 
 ## Historical status note
 
-`QEC1435_SINGLECHECK_SURJECTIVITY_HULL4_2026-09-20.md` records the state of the work on 20 September, when the exact hull-four reduction had been established but the rank-six lift obstruction was still described as open. The later class audit and Hall-capacity argument in the present manuscript close that finite lift obstruction for all 12 hull-four classes. The note is retained as research history; its open-status language is superseded by the present working proof and should not be read as current manuscript status.
+An earlier 20 September working note recorded the exact hull-four reduction while the rank-six lift obstruction was still described as open. The later class audit and Hall-capacity argument in the present manuscript close that finite lift obstruction for all 12 hull-four classes. The earlier open-status wording remains in Git history but is superseded by the present proof and should not be read as current manuscript status.
 
 The earlier open-status wording in the dated research note is historical and is superseded by the paper's length-ten classification and Hall-capacity exclusion. No separate computational supplement is maintained; the paper points once to the project repository, and the repository README gives reproduction instructions.

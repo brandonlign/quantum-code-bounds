@@ -2,8 +2,8 @@
 # Exact replay for the nonexistence manuscript.
 #
 # Default mode uses the committed 37 representatives and does not rerun the
-# memory-heavy lengthening census.  Pass --census to regenerate the 37-class
-# representative JSON first. The census is not run unless --census is requested.
+# lengthening census. Pass --census to regenerate representatives in a
+# temporary directory before checking the same class-level exclusions.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
