@@ -3,8 +3,7 @@
 #
 # Default mode uses the committed 37 representatives and does not rerun the
 # memory-heavy lengthening census.  Pass --census to regenerate the 37-class
-# representative JSON first.  This is separate from the historical monomial
-# automorphism replay in qec1435_replay_core.sh.
+# representative JSON first. The census is not run unless --census is requested.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
@@ -24,12 +23,20 @@ if ! command -v node >/dev/null; then
 fi
 
 mode="committed"
-if [[ "${1:-}" == "--census" ]]; then
+if [[ $# -eq 0 ]]; then
+  :
+elif [[ $# -eq 1 && "$1" == "--census" ]]; then
   mode="census"
-elif [[ $# -ne 0 ]]; then
+else
   echo "Usage: bash experiments/qec1435_replay_nonexistence.sh [--census]" >&2
   exit 2
 fi
+
+# Keep replay outputs out of the tracked certificate and representative data.
+scratch_dir=$(mktemp -d)
+trap 'rm -rf "$scratch_dir"' EXIT
+audit_path="$scratch_dir/qec1435_n10_additive_37_class_audit.json"
+generators_path="experiments/qec1435_n10_additive_37_generators_xy.json"
 
 run() {
   printf '\n=== %s ===\n' "$*"
@@ -66,19 +73,21 @@ run node experiments/qec1435_n10_additive_37_hull_hall_independent.mjs
 run node experiments/qec1435_n10_additive_37_js_independent_audit.mjs
 
 if [[ "$mode" == "census" ]]; then
+  generators_path="$scratch_dir/qec1435_n10_additive_37_generators_xy.json"
   run python3 experiments/qec1435_n10_additive_lengthening_census.py \
-    --write-generators experiments/qec1435_n10_additive_37_generators_xy.json
+    --write-generators "$generators_path"
 fi
 
 # Stage III: exact class-level hull and physical Hall audit.
 run python3 experiments/qec1435_n10_additive_37_class_audit.py \
-  --generators experiments/qec1435_n10_additive_37_generators_xy.json \
-  --output experiments/qec1435_n10_additive_37_class_audit.json
+  --generators "$generators_path" \
+  --output "$audit_path"
 
-python3 - <<'PY'
+python3 - "$audit_path" <<'PY'
 import json
+import sys
 
-with open("experiments/qec1435_n10_additive_37_class_audit.json") as handle:
+with open(sys.argv[1]) as handle:
     result = json.load(handle)
 
 assert result["class_count"] == 37

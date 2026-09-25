@@ -97,7 +97,7 @@ def main() -> int:
             "references": "References",
             "complete additive census": "37",
             "Hall obstruction": "Hall",
-            "repository link label": "project repository",
+            "visible repository URL": "https://github.com/brandonlign/quantum-code-bounds",
         }
         for label, needle in expected.items():
             if needle.casefold() not in txt.casefold():
@@ -110,7 +110,6 @@ def main() -> int:
             "A green certificate",
             "COMPUTATIONAL_SUPPLEMENT",
             "AI-assisted tools",
-            "experiments/",
         )):
             errors.append("Stale file reference, disclosure or internal placeholder found in PDF")
         if re.search(r"\brhs\s+⟨\s*0\b", txt):

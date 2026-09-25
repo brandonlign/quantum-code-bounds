@@ -37,14 +37,14 @@ remaining distance gap for stabilizer codes encoding three qubits into
 fourteen. The proof first applies a signed affine-shadow inequality and
 an integrality congruence to restrict low-weight stabilizer words. Exact
 split-shadow infeasibility certificates then exclude weight-two words
-and all configurations with three weight-four checks, leaving a unique
-weight-four check.
+and every configuration with three weight-four stabilizer words, leaving
+a unique weight-four stabilizer word.
 
-That check yields a ten-coordinate binary-additive code of size 1,024,
+That word yields a ten-coordinate binary-additive code of size 1,024,
 minimum distance at least five, and symplectic hull dimension four. We
 reconstruct all 37 relevant equivalence classes by exhaustive
 lengthening: 25 have the wrong hull dimension, and the other twelve
-violate a necessary 64-coset capacity bound. Together with the known
+violate the necessary coset-capacity bound. Together with the known
 \(\left[\!\left[14,3,4\right]\!\right]\) construction, this proves
 \(d_{\max}(14,3)=4\) for binary stabilizer codes.
 \end{abstract}
@@ -64,9 +64,9 @@ Theorem~\ref{thm:main} gives the upper bound, and the known
 \cite{grassl-table}.
 \end{proof}
 
-Grassl's quantum-code tables \cite{grassl-table} record a \(\left[\!\left[14,3,4\right]\!\right]\) construction and an upper bound of five for the distance of a binary \(\left[\!\left[14,3\right]\!\right]\) stabilizer code. Ball, Centelles, and Huber \cite{ball-centelles-huber} singled out the existence of \(\left[\!\left[14,3,5\right]\!\right]\) in Research Problem 1 as the smallest unresolved qubit stabilizer parameter set at the time of their article. Theorem~\ref{thm:main} closes this gap. The nonexistence proof for \(\left[\!\left[13,5,4\right]\!\right]\) by Bierbrauer, Fears, Marcugini, and Pambianco \cite{bierbrauer-et-al} provides a related precedent. Our argument combines signed weight enumerators \cite{rains-weight,rains-shadow} with the classification of binary-additive codes; it does not assume \(\operatorname{GF}(4)\)-linearity.
+Grassl's quantum-code tables \cite{grassl-table} record a \(\left[\!\left[14,3,4\right]\!\right]\) construction and an upper bound of five for the distance of a binary \(\left[\!\left[14,3\right]\!\right]\) stabilizer code. Ball, Centelles, and Huber \cite{ball-centelles-huber} identified \(\left[\!\left[14,3,5\right]\!\right]\) in Research Problem 1 as the smallest parameter set for which the existence of a qubit stabilizer code was then unknown. Theorem~\ref{thm:main} resolves that question in the negative. The nonexistence proof for \(\left[\!\left[13,5,4\right]\!\right]\) by Bierbrauer, Fears, Marcugini, and Pambianco \cite{bierbrauer-et-al} provides a related precedent. Our argument combines signed weight enumerators \cite{rains-weight,rains-shadow} with the classification of binary-additive codes; it does not assume \(\operatorname{GF}(4)\)-linearity.
 
-The proof has three steps. First, signed-shadow identities restrict the possible small stabilizers. Second, exact linear infeasibility certificates eliminate the remaining configurations of low-weight checks. Third, a symplectic reduction leads to an exhaustive classification of ten-site additive codes and a final coset-counting contradiction. The complete computational record is described in Section~9.
+The proof has three steps. First, signed-shadow identities restrict the possible low-weight stabilizer words. Second, exact linear infeasibility certificates eliminate the remaining low-weight-word configurations. Third, a symplectic reduction leads to an exhaustive classification of ten-site additive codes and a final coset-counting contradiction. The computational verification is summarized in Section~\ref{computational-material}.
 
 Throughout, \emph{physical} means weight or support on the original qubits, as opposed to a coordinate of an auxiliary relaxation. We use the qualifier when that distinction matters. The result applies to both pure and degenerate binary stabilizer codes, but not to arbitrary non-stabilizer quantum codes.
 
@@ -103,6 +103,8 @@ A binary stabilizer code with parameters \(\left[\!\left[14,3,d\right]\!\right]\
 d(S) &=\min \{ \operatorname{wt}(v) : v \in S^\perp \setminus  S \}.
 \end{aligned}
 \]
+
+We call each element of \(S\) a stabilizer word. A stabilizer generator is an element of a chosen basis of \(S\); weight enumerators count all stabilizer words, not only basis generators.
 
 For any nonzero binary subspace \(C\) of a Pauli space, write
 \[
@@ -152,7 +154,7 @@ Character orthogonality then gives the exact indicator identity
 
 Thus the signed transform is not a formal signed polynomial. It is the weight enumerator of the affine coset \(v_{0}+S^\perp\); every split cell is a nonnegative integer.
 
-For a partition of the qubits into blocks of lengths \(m\) and \(f\), let \(H_{i,j}\) count stabilizer words with block weights \((i,j)\). Define the quaternary Krawtchouk coefficients
+Fix a partition of the fourteen qubits into blocks of lengths \(m\) and \(f\), with \(m+f=14\), and let \(H_{i,j}\) count stabilizer words with block weights \((i,j)\). Define the quaternary Krawtchouk coefficients
 
 \[
 \begin{aligned}
@@ -196,7 +198,22 @@ U_{j} &=\sum_{w} (-1)^{w} A_{w} K_{j}^{14}(w).
 \end{aligned}
 \]
 
-Write \(Sh_j=\sum_{a+b=j}Sh_{a,b}\) for the total-weight count in the affine shadow. The quantities \(T_{j}/2048\) and \(U_{j}/2048\) are the actual total-weight counts in \(S^\perp\) and in the affine shadow. Hence \(U_{j} \ge 0\), even without purity. Also \(A_{0}=1\), \(\sum_{j} A_{j}=2048\), and \(T_{j}=2048 A_{j}\) for \(j=1,2,3,4\).
+Write \(Sh_j=\sum_{a+b=j}Sh_{a,b}\) for the total-weight count in the affine shadow. The quantities \(T_{j}/2048\) and \(U_{j}/2048\) are the actual total-weight counts in \(S^\perp\) and in the affine shadow. For the fixed partition of Section~3, coefficient convolution gives
+
+\[
+\begin{aligned}
+\sum_{a+b=j}K_a^m(i)K_b^f(\ell)
+&=[t^j](1+3t)^{m-i}(1-t)^i(1+3t)^{f-\ell}(1-t)^\ell\\
+&=K_j^{14}(i+\ell).
+\end{aligned}
+\]
+
+Summing the split-shadow transform of Section~3 over \(a+b=j\) therefore gives
+\[
+U_j=\sum_{a+b=j}\mathtt{SH}_{a,b}=2048Sh_j.
+\]
+
+Hence \(U_{j} \ge 0\), even without purity. Also \(A_{0}=1\), \(\sum_{j} A_{j}=2048\), and \(T_{j}=2048 A_{j}\) for \(j=1,2,3,4\).
 
 \begin{lemma}[Low-weight restriction]\label{lem:low-weight}
 If \(d(S)\geq5\), then \(A_1=A_3=0\), \(A_2\leq2\), and \(A_4\leq3\).
@@ -281,18 +298,18 @@ A_{4} \in \{1,3\}.
 
 \section{Excluding low-weight stabilizer configurations}\label{excluding-low-weight-stabilizer-configurations}
 
-We first derive a relaxation that is necessary for any stabilizer containing a specified subgroup. Exact infeasibility certificates then exclude the possible low-weight configurations.
+We first derive relaxations that are necessary for any hypothetical code containing a specified subgroup. Exact infeasibility certificates then exclude the remaining low-weight configurations.
 
 \subsection{A necessary coset-counting relaxation}\label{a-necessary-coset-counting-relaxation}
 
-Let \(R  \le  S\) be an isotropic subgroup supported on \(u\) of the original qubits, with the remaining \(f=14-u\) sites forming a suffix. Every element of \(S\) commutes with \(R\), so its prefix lies in \(R^\perp\). Also, \(S\) is a union of complete \(R\)-cosets.
+Let \(R  \le  S\) be an isotropic subgroup supported on \(m\) of the original qubits, with the remaining \(f=14-m\) sites forming a suffix. Every element of \(S\) commutes with \(R\), so its prefix lies in \(R^\perp\). Also, \(S\) is a union of complete \(R\)-cosets.
 
 For each complete coset \(Q\) of \(R\) in \(R^\perp\), let
 
 \[
 \begin{aligned}
-p(Q)=(p_{0},\dots,p_{u}), \\
-p_{a} &=\#\{q \in Q : \operatorname{wt}_{\mathrm{pref}}(q)=a\}.
+p(Q)=(p_{0},\dots,p_{m}), \\
+  p_{a} &=\#\{q \in Q : \operatorname{wt}_{\mathrm{pref}}(q)=a\},\qquad 0\leq a\leq m.
 \end{aligned}
 \]
 
@@ -327,7 +344,7 @@ For every such model we use the following row families:
   \(y \ge 0\).
 \end{itemize}
 
-The transforms \(T_{a,b}\) and \(\mathtt{SH}_{a,b}\) use Pauli weights on the actual prefix and suffix sites. The capacity bound introduced in Section 6 is not used in these exclusions.
+The transforms \(T_{a,b}\) and \(\mathtt{SH}_{a,b}\) use Pauli weights on the actual prefix and suffix sites. The coset-capacity bound of Section~6.2 is not used in these exclusions.
 
 \subsection{Exact Farkas sign convention}\label{exact-farkas-sign-convention}
 
@@ -363,7 +380,7 @@ which is impossible. Each certificate is checked by exact integer arithmetic. Th
 
 \subsection{Excluding weight-two stabilizers}\label{excluding-weight-two-stabilizers}
 
-Suppose \(p=Z_{0} Z_{1}\) belongs to \(S\). Every weight-two Pauli label is locally Clifford equivalent to this representative; in particular, Hadamards on sites 0 and 1 send \(X_0X_1\) to \(Z_0Z_1\). The eight two-site Paulis commuting with \(p\) split into four complete cosets of \(\langle p \rangle\) with physical two-site pattern
+Suppose \(p=Z_{0} Z_{1}\) belongs to \(S\). A one-qubit Clifford acts transitively on the three nonidentity Pauli labels, so independent local Clifford conjugations on sites 0 and 1 send any weight-two stabilizer word to this representative while preserving weight and the code parameters. In particular, Hadamards send \(X_0X_1\) to \(Z_0Z_1\). The eight two-site Pauli labels commuting with \(p\) split into four complete cosets of \(\langle p \rangle\) with physical two-site pattern
 
 \[
 \begin{aligned}
@@ -380,7 +397,11 @@ H_{2,b}  &\ge  H_{0,b},   b=0,\dots,12.
 \end{aligned}
 \]
 
-Use the 39 split counts \(H_{a,b}\), \(a=0,1,2\), \(b=0,\dots,12\), as the variables. This is a weaker relaxation than retaining the complete-coset variables \(y_{p,b}\) from Section~5.1: every physical code supplies these counts and satisfies \(H_{a,b}\ge0\) and \(H_{2,b}\ge H_{0,b}\), while further coset-pattern relations are discarded. The system also includes the low-weight distance equations and the signed-shadow constraints. Its exact Farkas certificate satisfies the sign conditions of Section~5.2 on all 39 columns and has
+The 39 variables are the split counts \(H_{a,b}\) of stabilizer words with prefix weight \(a\in\{0,1,2\}\) on sites 0 and 1 and suffix weight \(b\in\{0,\ldots,12\}\) on the remaining sites.
+
+Every hypothetical code satisfies the following necessary constraints: \(H_{0,0}=1\), \(\sum_{a,b}H_{a,b}=2048\), and \(H_{a,b}\geq0\); the 11 equalities \(T_{a,b}=2048H_{a,b}\) for \(1\leq a+b\leq4\); the 13 coset inequalities \(H_{2,b}\geq H_{0,b}\); and, for all 39 split cells, centralizer inclusion \(T_{a,b}\geq2048H_{a,b}\), centralizer nonnegativity \(T_{a,b}\geq0\), and affine-shadow nonnegativity \(\mathtt{SH}_{a,b}\geq0\). Together with the two normalization equalities, these give 13 equality rows; the listed inequalities give 130 rows, in addition to the 39 nonnegativity conditions on the variables. These constraints form a necessary relaxation; it discards the further coset-pattern relations in Section~5.1.
+
+The exact Farkas certificate has 13 nonnegative inequality multipliers and 10 nonzero equality multipliers. The residual vector \(c\) has 17 positive and 22 zero entries and satisfies the 39 column identities \(c=\lambda G+\nu M\). Its normalization is
 
 \[
 \begin{aligned}
@@ -389,8 +410,9 @@ Use the 39 split counts \(H_{a,b}\), \(a=0,1,2\), \(b=0,\dots,12\), as the varia
 \]
 
 Thus \(A_{2}=0\) for every hypothetical code.
+The exact multipliers and two independent integer-arithmetic verifiers are identified in the verification instructions cited in Section~\ref{computational-material}.
 
-\subsection{Excluding overlapping low-weight checks}\label{excluding-overlapping-low-weight-checks}
+\subsection{Excluding overlapping low-weight stabilizer words}\label{excluding-overlapping-low-weight-checks}
 
 The support argument in Section 5.5 uses the following exclusions. Each subgroup acts on the original qubits, and its normalizer and cosets are enumerated before the linear relaxation is formed.
 
@@ -407,7 +429,7 @@ For \(R=\langle \mathtt{ZZZ} \rangle\) on three original sites, the 16 normalize
 \]
 Here each integer is the number of normalizer cosets with the indicated prefix-weight pattern.
 
-The exact dual satisfies the sign conditions of Section~5.2 on all 36 columns and has \(\nu \cdot rhs=-22528\). This also excludes a weight-three check, independently of Lemma~\ref{lem:low-weight}.
+The exact dual satisfies the sign conditions of Section~5.2 on all 36 columns and has \(\nu \cdot rhs=-22528\). This also excludes a weight-three stabilizer word, independently of Lemma~\ref{lem:low-weight}.
 
 \subsubsection{The four-site Bell subgroup}\label{the-four-site-bell-subgroup}
 
@@ -431,6 +453,7 @@ H_{1,b}=0, \\
 \end{aligned}
 \]
 
+\Needspace{4\baselineskip}
 The exact Farkas certificate satisfies the sign conditions of Section~5.2 on all 55 columns and has
 
 \[
@@ -439,7 +462,7 @@ The exact Farkas certificate satisfies the sign conditions of Section~5.2 on all
 \end{aligned}
 \]
 
-It excludes a pair of weight-four Bell checks with the same support.
+It excludes a pair of weight-four Bell stabilizer words with the same support.
 
 \subsubsection{The five-site overlap subgroup}\label{the-five-site-overlap-subgroup}
 
@@ -482,7 +505,7 @@ R &=\langle  \mathtt{ZZZZII}, \mathtt{XXIIXX}  \rangle.
 
 The nonzero subgroup words have weights \(4,4,6\). Here the normalizer has 14 prefix patterns; the resulting 126-variable system has an exact Farkas certificate satisfying the sign conditions of Section~5.2 in every column, with \(\nu \cdot rhs=-22212608\). Both six-site exclusions are checked separately, with the complete cosets enumerated in each case.
 
-\subsection{Support geometry of weight-four checks}\label{support-geometry-of-weight-four-checks}
+\subsection{Support geometry of weight-four stabilizer words}\label{support-geometry-of-weight-four-checks}
 
 Let \(p,q\) be distinct commuting weight-four stabilizer words. Let \(t\) be the number of common support sites and \(h\) the number of common sites on which their nonidentity Pauli letters differ. Commutation makes \(h\) even, and
 
@@ -513,16 +536,16 @@ The preceding subgroup exclusions remove every case with \(t \ge 2\):
 \end{center}
 }
 
-The omitted case \(t=4,h=0\) would give the same Pauli word twice, not two distinct checks. Thus two distinct weight-four checks meet in at most one qubit. If they meet in one, commutation forces the same local Pauli letter there. Independent local Clifford transformations therefore map all weight-four checks to Z-only words simultaneously. This does not imply that the full stabilizer is CSS.
+The omitted case \(t=4,h=0\) would give the same Pauli word twice, not two distinct stabilizer words. Thus two distinct weight-four stabilizer words meet in at most one qubit. If they meet in one, commutation forces the same local Pauli letter there. Independent local Clifford transformations therefore map all weight-four stabilizer words to Z-only words simultaneously. This does not imply that the full stabilizer is CSS.
 
 \begin{minipage}{\linewidth}
-If \(A_{4}=3\), the three checks are independent, because the sum of two has physical weight six or eight, not four. Their support sets are pairwise disjoint or meet in one site. Up to physical site permutation and reordering of the checks, there are exactly five support patterns:
+If \(A_{4}=3\), the three weight-four stabilizer words are independent: the sum of any two has physical weight six or eight, not four. Their support sets are pairwise disjoint or meet in one site. Up to physical site permutation and reordering, there are exactly five support patterns:
 
 {\small
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.7cm}Xr>{\centering\arraybackslash}p{2.1cm}r@{}}
 \toprule
-type & check supports & union & pair-product weights & triple-product weight \\
+type & word supports & union & pair-product weights & triple-product weight \\
 \midrule
 0 intersections & \(\{0,1,2,3\};\{4,5,6,7\};\{8,9,10,11\}\) & 12 & \(8,8,8\) & 12 \\
 1 intersection & \(\{0,1,2,3\};\{3,4,5,6\};\{7,8,9,10\}\) & 11 & \(6,8,8\) & 10 \\
@@ -538,7 +561,7 @@ To see that the list is complete, record which of the three pairs of supports in
 
 \subsection{The four overlapping rank-three geometries}\label{the-four-overlapping-rank-three-geometries}
 
-For each of the four non-disjoint rows in the table, let \(R\) be the physical rank-three subgroup generated by the three displayed Z-only checks. Its complete cosets in the original-site normalizer are enumerated and grouped by their prefix-weight histograms. The exact relaxations are:
+For each of the four non-disjoint rows in the table, let \(R\) be the physical rank-three subgroup generated by the three displayed Z-only words. Its complete cosets in the original-site normalizer are enumerated and grouped by their prefix-weight histograms. The exact relaxations are:
 
 In each branch, the system includes the global equations
 
@@ -617,7 +640,7 @@ c &=\lambda G + \nu M  \ge  0, \\
 
 The equality rows include the same global weight equations used in Section 5.6: \(A_{1}=A_{2}=A_{3}=0\) and the branch assumption \(A_{4}=3\). They do not follow from containment of the disjoint subgroup alone. All 648 residual coefficients are nonnegative (403 positive and 245 zero), so the exact Farkas certificate excludes this final geometry as well.
 
-\begin{lemma}[Unique weight-four check]\label{lem:unique-check}
+\begin{lemma}[Unique weight-four word]\label{lem:unique-check}
 Every binary \(\left[\!\left[14,3,d\geq5\right]\!\right]\) stabilizer has exactly one stabilizer word of weight four.
 \end{lemma}
 \begin{proof}
@@ -731,7 +754,7 @@ Its distribution is
 
 To obtain these counts, split the even-weight \(x\)-masks in \(p^\perp\) by weight. The \(x=0\) quotient contributes \(1,4,3\) classes of costs \(0,1,2\); each of the six weight-two \(x\)-masks contributes four classes of cost \(2\) and four of cost \(3\); the weight-four mask contributes eight classes of cost \(4\).
 
-For every suffix representative \(w\in\xi\), a prefix representative \(v\) of \(e(\xi)\) makes \(v+w\) commute with \(S\). Conversely, commutation forces this prefix class for a given suffix class. Thus the mixed centralizer fibre indexed by \(\xi\) has minimum physical weight \(d(\xi)+\operatorname{cost}(e(\xi))\). If \(\xi\ne0\), its suffix is nonzero, so no vector in this fibre is \(p\). Each vector in the fibre therefore has weight at least five: if it lies in \(S\), Sections~4--5 leave \(p\) as the only nonzero stabilizer word of weight at most four; otherwise its weight is at least \(d(S)\). Hence
+For every suffix representative \(w\in\xi\), a prefix representative \(v\) of \(e(\xi)\) makes \(v+w\) commute with \(S\). Conversely, commutation forces this prefix class for a given suffix class. Thus the mixed centralizer fiber indexed by \(\xi\) has minimum physical weight \(d(\xi)+\operatorname{cost}(e(\xi))\). If \(\xi\ne0\), its suffix is nonzero, so no vector in this fiber is \(p\). Each vector in the fiber therefore has weight at least five: if it lies in \(S\), Sections~4--5 leave \(p\) as the only nonzero stabilizer word of weight at most four; otherwise its weight is at least \(d(S)\). Hence
 \[
 d(\xi)+\operatorname{cost}(e(\xi))\ge5
 \qquad(\xi\ne0).
@@ -747,7 +770,7 @@ Every compatible graph map induces a symplectic isomorphism \(P/J\to E\). The bi
 \end{aligned}
 \]
 
-The capacities are the numbers of nonzero prefix classes of cost at least 4, 3, and 2, respectively. The inequalities follow by counting under the bijection \(\xi\mapsto e(\xi)\); they are necessary Hall-type conditions for the required symplectic isomorphism. Failure excludes every physical symplectic lift; passing the inequalities does not establish that such a lift exists.
+The coset-capacity bound consists of these three inequalities. The capacities are the numbers of nonzero prefix classes of cost at least 4, 3, and 2, respectively. Counting under the bijection \(\xi\mapsto e(\xi)\) gives Hall-type necessary conditions for the required symplectic isomorphism. Failure excludes every physical symplectic lift; satisfying the bound does not establish that a lift exists.
 
 \section{Exhaustive additive-code classification}\label{exhaustive-additive-code-classification}
 
@@ -755,11 +778,13 @@ The capacities are the numbers of nonzero prefix classes of cost at least 4, 3, 
 
 Under the standard Pauli/additive-code correspondence \cite{calderbank-shor-sloane}, represent a quaternary symbol by two binary bits. A length-\(n\) additive code is a binary subspace of \(\mathbb{F}_{2}^{2n}\), with quaternary Hamming weight equal to physical Pauli weight. Equivalence is coordinate permutation plus an arbitrary local \(\operatorname{GL}(2,2)\) map on each two-bit symbol plane. This is exactly the binary local symplectic monomial equivalence relevant here. No global \(\operatorname{GF}(4)\) scalar-linearity is assumed.
 
-Grassl, Krotov, Sok, and Solé \cite{grassl-et-al} report 37 equivalence classes in the \((n,k)=(10,10)\) cell of their additive \((n,2^{k}, \ge 5)_{4}\) classification (Section 2.3, Table 1 of \emph{The punctured dodecacode is unique}). Their paper reports the count, not the 37 generator matrices. We reconstruct the representatives using the described lengthening method.
+Grassl, Krotov, Sok, and Solé \cite{grassl-et-al} report 37 equivalence classes in the \((n,k)=(10,10)\) cell of their additive \((n,2^{k}, \ge 5)_{4}\) classification (Section 2.3, Table 1 of \emph{The punctured dodecacode is unique}). They report the count, not the 37 generator matrices. We reconstruct the classes by lengthening. The published counts serve as cross-checks: the census generates candidates from predecessor cells and decides equivalence by the graph certificates described below; the table counts do not by themselves establish completeness.
 
 \subsection{Why the lengthening census is exhaustive for this cell}\label{why-the-lengthening-census-is-exhaustive-for-this-cell}
 
-Shortening a target code at its last coordinate changes binary dimension by \(r \in \{0,1,2\}\). Conversely, lengthening a parent of length \(m\) and binary dimension \(k\) uses one new coordinate of rank \(r\):
+Let \(D\leq\mathbb{F}_2^{2(m+1)}\) be a target code of binary dimension \(k\), and project it onto its last two-bit coordinate. The image has binary dimension \(r\in\{0,1,2\}\); the kernel is a length-\(m\) parent code of binary dimension \(k-r\). Choose a basis of the image and lift its basis vectors to \(D\). Their old-coordinate parts determine \(r\) quotient classes modulo the parent. For \(r=1\), the nonzero class must have minimum old weight at least four. For \(r=2\), each of the three nonzero combinations of the two classes must have minimum old weight at least four. After a local \(\operatorname{GL}(2,2)\) change of basis, these are exactly the extensions below. Conversely, each listed extension has distance at least five whenever its parent has distance at least five and the stated coset minima are at least four.
+
+Thus lengthening a parent of length \(m\) and binary dimension \(k-r\) uses one new coordinate of rank \(r\):
 
 \begin{itemize}
 \tightlist
@@ -771,14 +796,15 @@ Shortening a target code at its last coordinate changes binary dimension by \(r 
   \(r=2\): choose two quotient labels whose three nonzero XOR combinations all have old minimum weight at least four and attach independent new symbols.
 \end{itemize}
 
-The threshold four is exact: a word with nonzero new symbol gains one physical unit of weight, while a word with zero new symbol is already a distance-five parent. Thus every target code appears in one of these three cases.
+The threshold four is exact: a word with nonzero new symbol gains one physical unit of weight, while a word with zero new symbol lies in the distance-five parent. Thus every target code appears in one of these three cases.
 
-The reconstructed counts for the predecessor cells and the target cell are:
+\Needspace{12\baselineskip}
+The table lists the predecessor cells needed to reach \((10,10)\) and the reconstructed class counts:
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}rl@{}}
 \toprule\noalign{}
-length \(n\) & checked binary dimensions \(k: count\) \\
+length \(n\) & required binary dimensions \(k\): number of classes \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -792,15 +818,15 @@ length \(n\) & checked binary dimensions \(k: count\) \\
 \end{longtable}
 }
 
-The high-rate zero predecessor cells are explicitly installed and checked; they are not silently interpreted as missing dictionary entries. Therefore the recurrence covers every source cell that can feed \((10,10)\).
+Every zero-count predecessor cell listed above is computed and verified empty rather than treated as an absent cell. Hence the table covers every predecessor needed by the recurrence through \((10,10)\).
 
 \subsection{Exact equivalence certificates}\label{exact-equivalence-certificates}
 
 For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a codeword reorder, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). The final \texttt{pynauty} certificate is therefore an exact additive-monomial equivalence certificate; the weight and pair-rank invariants are only performance filters. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}.
 
-\subsection{Hull and physical Hall results}\label{hull-and-physical-hall-results}
+\subsection{Hull and coset-capacity results}\label{hull-and-coset-capacity-results}
 
-The enumeration produces 37 generator matrices, each defining 1,024 words of minimum distance five. Independent exact checks recompute their ranks, distances, hull dimensions and coset minima. The hull dimensions are
+The enumeration produces 37 generator matrices, each defining 1,024 words of minimum distance five. Independent exact audits recompute their ranks, distances, hull dimensions, and coset minima. The hull dimensions are
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}rr@{}}
@@ -818,34 +844,34 @@ binary symplectic hull dimension & number of classes \\
 \end{longtable}
 }
 
-The 25 classes with hull dimension different from four cannot arise from the code \(C\) required by Lemma~\ref{lem:ten-site}. For the 12 hull-four classes, the exact physical quotient audit gives:
+The 25 classes with hull dimension different from four cannot arise from the code \(C\) required by Lemma~\ref{lem:ten-site}. For the 12 hull-four classes, the exact physical coset-capacity audit gives:
 
 {\small
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{@{}rXrrrl@{}}
 \toprule
-class & suffix weight spectrum \(\{w:N_w\}\) & \(N_{\leq1}\) & \(N_{\leq2}\) & \(N_{\leq3}\) & result \\
+class & suffix weight spectrum \(\{w:N_w\}\) & \(N_{\leq1}\) & \(N_{\leq2}\) & \(N_{\leq3}\) & capacity \\
 \midrule
-9 & \(\{0:1,2:39,3:24\}\) & 0 & 39 & 63 & Hall fail \\
-12 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
-14 & \(\{0:1,2:39,3:24\}\) & 0 & 39 & 63 & Hall fail \\
-15 & \(\{0:1,2:27,3:36\}\) & 0 & 27 & 63 & Hall fail \\
-17 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
-20 & \(\{0:1,2:35,3:27,4:1\}\) & 0 & 35 & 62 & Hall fail \\
-21 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
-22 & \(\{0:1,2:23,3:40\}\) & 0 & 23 & 63 & Hall fail \\
-26 & \(\{0:1,2:35,3:27,4:1\}\) & 0 & 35 & 62 & Hall fail \\
-34 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
-35 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
-37 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & Hall fail \\
+9 & \(\{0:1,2:39,3:24\}\) & 0 & 39 & 63 & fails \\
+12 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
+14 & \(\{0:1,2:39,3:24\}\) & 0 & 39 & 63 & fails \\
+15 & \(\{0:1,2:27,3:36\}\) & 0 & 27 & 63 & fails \\
+17 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
+20 & \(\{0:1,2:35,3:27,4:1\}\) & 0 & 35 & 62 & fails \\
+21 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
+22 & \(\{0:1,2:23,3:40\}\) & 0 & 23 & 63 & fails \\
+26 & \(\{0:1,2:35,3:27,4:1\}\) & 0 & 35 & 62 & fails \\
+34 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
+35 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
+37 & \(\{0:1,1:2,2:37,3:24\}\) & 2 & 39 & 63 & fails \\
 \bottomrule
 \end{tabularx}
 }
 
-In every row \(N_{ \le 3}\) is 62 or 63, exceeding its capacity 59 (and several rows already fail at \(N_{ \le 2}>32\)).
+In every row \(N_{\leq3}\in\{62,63\}>59\). Eight rows also have \(N_{\leq2}=39>32\).
 
 \begin{lemma}[Additive lift exclusion]\label{lem:additive-lift}
-None of the 37 length-ten classes can supply the code in Lemma~\ref{lem:ten-site}: 25 have a different hull dimension, and the other twelve violate the necessary Hall capacity bound.
+None of the 37 length-ten classes can supply the code in Lemma~\ref{lem:ten-site}: 25 have a different hull dimension, and the other twelve violate the coset-capacity bound.
 \end{lemma}
 \begin{proof}
 The first exclusion follows from the hull-dimension table. For every remaining class, the coset table gives \(N_{\leq3}\in\{62,63\}\), exceeding the necessary capacity 59. Hence none of the 37 classes can supply the required code.
@@ -854,18 +880,29 @@ The first exclusion follows from the hull-dimension table. For every remaining c
 \section{Discussion and conclusion}\label{discussion-and-conclusion}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Assume a binary \(\left[\!\left[14,3,d\ge 5\right]\!\right]\) stabilizer exists. Sections~3--4 give \(A_{1}=A_{3}=0\), \(A_{2}\leq2\), and \(A_{4}\in\{1,3\}\). Section~5.3 then excludes weight-two stabilizers, so \(A_{2}=0\). Sections~5.3--5.5 exclude all pairs of distinct weight-four checks whose supports intersect in at least two sites and classify the three-check case into five support geometries. Section~5.6 excludes the four overlapping rank-three geometries, and Section~5.7 excludes the disjoint \(4+4+4+2\) geometry. Hence \(A_{4}=1\).
+Assume a binary \(\left[\!\left[14,3,d\ge 5\right]\!\right]\) stabilizer exists. Sections~3--4 give \(A_{1}=A_{3}=0\), \(A_{2}\leq2\), and \(A_{4}\in\{1,3\}\). Section~5.3 then excludes weight-two stabilizer words, so \(A_{2}=0\). Sections~5.3--5.5 exclude all pairs of distinct weight-four stabilizer words whose supports intersect in at least two sites and classify the \(A_4=3\) case into five support geometries. Section~5.6 excludes the four overlapping rank-three geometries, and Section~5.7 excludes the disjoint \(4+4+4+2\) geometry. Hence \(A_{4}=1\).
 
-Lemma~\ref{lem:ten-site} forces a ten-site additive code of size 1,024, distance at least five, and hull dimension four. Section 7 exhausts the 37 equivalence classes of such ten-site additive codes and rejects every one: 25 by hull dimension and 12 by the physical Hall capacity. This is a contradiction.
+Lemma~\ref{lem:ten-site} forces a ten-site additive code of size 1,024, distance at least five, and hull dimension four. Section~7 exhausts the 37 equivalence classes of such ten-site additive codes and rejects every one: 25 by hull dimension and 12 by the coset-capacity bound. This is a contradiction.
 \end{proof}
 
 The proof is specific to these parameters and to the stabilizer family; it gives no bound at other lengths and no conclusion for non-stabilizer codes.
 
 \section{Computational material}\label{computational-material}
 
-The proof uses exact integer certificates for the split-weight systems and an exhaustive classification of length-ten additive codes. The verification scripts check the coefficient identities, Farkas multipliers, physical coset models, saved class representatives, and Hall obstructions. The default verification uses the saved representatives rather than rerunning the more computationally expensive lengthening census. No floating-point feasibility calculation serves as a certificate. The certificate data, generator matrices, verification scripts, and reproduction instructions are available in the \href{https://github.com/brandonlign/quantum-code-bounds}{project repository}.
+The verification uses exact integer certificates for the split-weight systems and an exhaustive classification of length-ten additive codes. The standard replay requires Python 3.10 or newer and Node.js. From the repository root, run
+\begin{center}
+\texttt{bash experiments/qec1435\_replay\_nonexistence.sh}
+\end{center}
+This replay checks the exact arithmetic and the committed class representatives but does not regenerate the classification. The optional \texttt{--census} mode reconstructs the classification and requires the pinned \texttt{pynauty==2.8.8.1} dependency. The pin and detailed verification instructions are included in the repository. Replay outputs are temporary and do not replace the committed representatives or audit data.
+
+\Needspace{4\baselineskip}
+The public repository is
+\begin{center}
+\url{https://github.com/brandonlign/quantum-code-bounds}
+\end{center}
 
 
+\Needspace{20\baselineskip}
 \begin{thebibliography}{99}
 \bibitem{calderbank-shor-sloane}
 A.~R. Calderbank, E.~M. Rains, P.~W. Shor, and N.~J.~A. Sloane,
