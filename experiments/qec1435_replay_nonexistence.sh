@@ -3,8 +3,8 @@
 #
 # Default mode uses the committed 37 representatives and does not rerun the
 # memory-heavy lengthening census.  Pass --census to regenerate the 37-class
-# representative JSON first.  This is separate from the historical monomial
-# automorphism replay in qec1435_replay_core.sh.
+# representative JSON first. Both modes check the same final class-level
+# hull and physical Hall obstruction.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
