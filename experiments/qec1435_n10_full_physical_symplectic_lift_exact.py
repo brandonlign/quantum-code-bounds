@@ -5,7 +5,6 @@ ten-site code C with |C|=1024, d>=5 and symplectic hull dimension 4.
 Enumerates all 1,451,520 ordered symplectic bases of the real four-site
 ZZZZ centralizer quotient. A surviving lift is independently checked
 against all 131,072 real fourteen-qubit centralizer labels.
-NO classification of all ten-site additive codes is claimed.
 Python >=3.10, standard library only.
 """
 import argparse,json

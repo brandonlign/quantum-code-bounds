@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """A paper-checkable Delsarte identity for any additive (10,2^10,d>=5) code.
 
-No solver, no numerical LP, no external import: check all 11 formal original-
-physical Krawtchouk coefficients as exact fractions. The result is known-style
-additive-code LP arithmetic, not a publication-priority claim.
+Check all 11 formal original-physical Krawtchouk coefficients as exact
+fractions, using the Python standard library.
 """
 from fractions import Fraction as F
 from math import comb
@@ -34,4 +33,3 @@ print("EXACT PASS: 11/11 length-ten quaternary Krawtchouk columns")
 print("A5 >=72 for additive (10,1024,d>=5), no self-duality assumption")
 print("If the ten-site symplectic hull has 16 words, at least 72-15=57")
 print("physical weight-five suffix-only normalizer labels are logical.")
-print("Standalone ten-site control; final exclusion uses the hull/Hall class audit.")

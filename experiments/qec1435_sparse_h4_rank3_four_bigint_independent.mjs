@@ -125,5 +125,3 @@ for(const [name,sets] of Object.entries(SETS)){
 }
 assert.equal(summary.length,4);
 console.log("ALL FOUR ORIGINAL-SITE OVERLAPPING H4=3 CASES PASS");
-console.log("Independent arithmetic does NOT replace mathematical");
-console.log("review of signed-shadow necessary constraints.");

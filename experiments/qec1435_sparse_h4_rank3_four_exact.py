@@ -3,7 +3,7 @@
 
 No optimizer at replay: rebuild each physical 3-Z-check normalizer's R-cosets,
 split MacWilliams / affine-shadow NECESSARY models and integer Farkas identities.
-Does NOT exclude disjoint H4=3 checks or the H4=1 case.
+The disjoint-support case has a separate verifier.
 """
 from collections import Counter
 from math import comb
@@ -129,4 +129,3 @@ def verify(name):
 if __name__=='__main__':
  for name in SETS:verify(name)
  print('FOUR EXACT OVERLAPPING H4=3 NO-GOS; disjoint geometry is checked by the separate 648-column verifier.')
- print('The H4=1 branch is handled by the graph/lift closure in the nonexistence manuscript.')

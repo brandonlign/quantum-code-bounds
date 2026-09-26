@@ -3,8 +3,8 @@
 exact 648-column signed-shadow no-go for H4=3 disjoint supports.
 
 Every coefficient is rebuilt using actual original-physical Pauli cosets and
-independently evaluated Krawtchouk polynomials. No optimizer or floating point.
-Does NOT by itself establish nonexistence of [[14,3,5]]: H4=1 remains.
+independently evaluated Krawtchouk polynomials. No optimizer or floating point
+is used.
 """
 from collections import Counter
 from itertools import product
@@ -118,4 +118,3 @@ print("403 positive residual columns, 245 zero, zero negative")
 print("exact Farkas normalization:",constant)
 print("H4=3 cannot occur with three disjoint ZZZZ checks, conditional on")
 print("physical distance-five equalities, H2=0 and signed-shadow integrality.")
-print("The H4=1 branch is handled by the graph/lift closure in the nonexistence manuscript.")

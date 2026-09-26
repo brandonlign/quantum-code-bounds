@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 /*
-Exact original-physical weight-four subgroup geometry, independent
-of existing split-shadow/Farkas scripts. This is a SUPPORT combinatorial
-audit ONLY, not a proof of the prior four subgroup no-go certificates
-or existence/nonexistence.
+Enumerate the five possible rank-three support geometries for three
+weight-four stabilizer words and verify their pairwise products.
 
 If two weight-four Pauli labels commute and their supports meet in t
 original sites, with h different nonidentity labels in that intersection,
@@ -67,4 +65,3 @@ for(const [name,sets,unionsize,pairweights,tripleweight] of TYPES){
 assert.equal(seen.size,5);
 console.log("PASS: all five normalized rank-three four-check support geometries");
 console.log("PASS: distinct pair commuting overlap census, t=0..4");
-console.log("NO claim of code existence, proof of subgroup Farkas no-gos, or priority");

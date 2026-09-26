@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 "use strict";
-/*
-Independent Node.js (no Python imports, no pynauty) 37-matrix original-physical
-necessary-lift audit. Checks the saved candidates, NOT the exhaustiveness of
-the 37-class census nor the separate unique-H4 theorem.
-*/
+/* Recompute hull dimensions and coset-capacity bounds for the 37 saved
+ * length-ten additive codes using JavaScript.
+ */
 import { readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,6 +31,6 @@ function main(){const inputs=JSON.parse(readFileSync(GENS,"utf8"));if(inputs.len
 const prefix=fourPrefix(),rows=inputs.map(auditOne),hulls={};for(const x of rows)hulls[x.hull]=(hulls[x.hull]||0)+1;
 if(JSON.stringify([0,2,4,6,8].map(k=>hulls[k]||0))!==JSON.stringify([7,14,12,2,2]))throw Error("unexpected hull counts");
 const h4=rows.filter(x=>x.hull===4);if(h4.length!==12||h4.some(x=>!x.excluded||x.capacities.n3<62||x.capacities.n3>63))throw Error("hull4 closure failed");
-console.log(JSON.stringify({source:basename(GENS),prefixCost:prefix,candidates:rows.length,hulls,hull4:h4,conclusion:"ALL 37 COMMITTED MATRICES EXCLUDED UNDER NECESSARY LIFT CONDITION; CLASS COMPLETENESS AND UNIQUE CHECK ARE SEPARATE PROOF OBLIGATIONS"},null,2));
+console.log(JSON.stringify({source:basename(GENS),prefixCost:prefix,candidates:rows.length,hulls,hull4:h4},null,2));
 }
 main();

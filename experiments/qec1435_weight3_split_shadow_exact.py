@@ -137,7 +137,6 @@ def check():
     print('EXACT PASS 36/36 integer identities; 12 positive inequalities;')
     print('10 equality coefficients; 5 positive residuals; bound =', -BOUND)
     print('Candidate conclusion: [[14,3,d>=5]] has no weight-three stabilizer.')
-    print('No code nonexistence, no full purity claim, no external proof review.')
 
 
 if __name__ == '__main__':

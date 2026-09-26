@@ -166,5 +166,4 @@ if(typeof console!=="undefined"){
  console.log("strict negative RHS:",String(bound));
  console.log("No binary physical [[14,3,d>=5]] stabilizer has the five-site",
              "two-generator weight-four triangle subgroup.");
- console.log("No claim about code existence/nonexistence.");
 }

@@ -103,4 +103,3 @@ console.log("64 four-site real Pauli cosets; six block-weight patterns");
 console.log("648/648 exact physical original-four-block columns");
 console.log("403 positive, 245 zero, NO negative coefficients");
 console.log("rhs contradiction",constant);
-console.log("LIMIT: other H4=3 supports and parent parity are separate proofs.");

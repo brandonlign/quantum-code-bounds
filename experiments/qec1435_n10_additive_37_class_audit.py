@@ -6,9 +6,8 @@ This script checks the codebook invariants again, computes the exact binary
 trace-symplectic hull, applies the ambient four-deep-hole gate to every class,
 and sends only hull-four classes through the exact physical-lift verifier.
 
-The final result is a finite computational audit of the complete published
-``(10, 2**10, >=5)_4`` class list.  It does not by itself prove the separate
-unique-weight-four-stabilizer reduction for a hypothetical fourteen-site code.
+The final result is a finite computational audit of the published
+``(10, 2**10, >=5)_4`` class list.
 """
 
 from __future__ import annotations

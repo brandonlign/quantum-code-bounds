@@ -6,13 +6,11 @@ two-generator weight-four stabilizer subgroup in any putative binary
 Physical six-site subgroup:
      H = < ZZZZII, ZZ IIZZ >
 so every nonidentity H word has physical weight four, with pairwise
-two-site overlap. This is NOT the six-site GHZ subgroup from the
-earlier rank-six exclusion. This verifier derives all actual Pauli
-cosets and uses an immutable exact integer Farkas dual, never SciPy.
+two-site overlap. This verifier derives all actual Pauli cosets and checks
+the integer Farkas dual.
 
-The source certificate is a NECESSARY additive full-code enumerator
-contradiction. It requires distance five, not any monomial involution,
-purity, small-code classification or quantum-code existence claim.
+The certificate uses the distance-five equalities and split-shadow
+nonnegativity.
 """
 from collections import Counter
 from math import comb
@@ -135,7 +133,6 @@ def exact_certificate():
     print("75 nonzero nonnegative residual coefficients;")
     print("strict Farkas contradiction:",normalization)
     print("No hypothetical [[14,3,d>=5]] stabilizer contains H.")
-    print("No statement on [[14,3,5]] code existence follows.")
 
 if __name__=="__main__":
     physical_coset_audit()

@@ -1,14 +1,7 @@
 #!/usr/bin/env node
 /**
- * Independently replay the 37 STORED additive codes, without importing ANY
- * Python classification, hull, coset, or lifter functions.  Input file
- * generators are binary X bits 0..9 and Z bits 10..19.
- *
- * This validates every individual recorded code, its exact physical d=5,
- * binary trace-symplectic Gram radical, and every one of the 64 actual
- * suffix coset minima for every hull-four class. It deliberately does NOT
- * independently regenerate or certify nauty class COMPLETENESS; that
- * remains the separate lengthening-census/referee obligation.
+ * Independently checks the 37 saved additive codes: their binary dimension,
+ * minimum distance, symplectic hulls, and suffix coset minima.
  */
 import { readFileSync } from "node:fs";
 
@@ -144,5 +137,3 @@ console.log("12/12 hull-four classes fail ORIGINAL-physical 8/32/59 Hall gate");
 console.log("class: spectrum / cumulative [d<=1,d<=2,d<=3]");
 for(const row of audit)
   console.log(row.class,JSON.stringify(row.spectrum),JSON.stringify(row.cumulative));
-console.log("LIMIT: This independent JS codebook replayer does NOT itself certify");
-console.log("that 37 is a COMPLETE equivalence-class enumeration.");

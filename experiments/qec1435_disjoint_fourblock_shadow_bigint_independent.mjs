@@ -3,7 +3,6 @@
 /* Independent BigInt replay of ORIGINAL-physical disjoint H4=3 no-go.
  * Literal four-site x,z Pauli cosets; original 4+4+4+2 split; polynomial
  * convolution Krawtchouk; exact 648-column integer dual. Node stdlib.
- * Does not replace specialist review of signed-shadow model necessity.
  */
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -104,4 +103,3 @@ console.log("648 original-physical subgroup coset columns");
 console.log("403 positive, 245 zero Farkas residuals; none negative");
 console.log("68 equality and 43 physical shadow inequality multipliers");
 console.log("exact contradiction: 0 <= c*y <= "+rhs.toString());
-console.log("Other H4=3 branches and model necessity still require review.");

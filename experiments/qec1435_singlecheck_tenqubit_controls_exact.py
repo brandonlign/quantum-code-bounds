@@ -117,7 +117,6 @@ def dodecacode_control():
     print("EXACT dodecacode: 4096 words, minimum weight 6, self-orthogonal")
     print("shorten + puncture: ACTUAL (10,1024,5) additive code")
     print("length-ten symplectic rank=2; hull dimension=8")
-    print("THIS IS NOT A [[14,3,5]] CONSTRUCTION")
 
 if __name__=="__main__":
     selfdual_obstruction()

@@ -122,7 +122,6 @@ def audit():
     print("78 positive nonnegative residual coefficients")
     print("strict contradiction:",-BOUND)
     print("No binary [[14,3,d>=5]] stabilizer contains H.")
-    print("No claim [[14,3,5]] exists or does not exist.")
 
 if __name__=="__main__":
     audit()
