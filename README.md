@@ -19,6 +19,8 @@ bash experiments/qec1435_replay_nonexistence.sh
 
 This verifies the integer certificates and the 37 saved length-ten representatives. It does not regenerate the full classification.
 
+The Section 5.3 weight-two certificate is checked by `experiments/qec1435_order2_weight2_split_shadow_exact.py` and the independent BigInt verifier `experiments/qec1435_order2_weight2_split_shadow_bigint_independent.mjs`. The standard replay runs both.
+
 To regenerate the classification, install the optional dependency and run:
 
 ```sh
