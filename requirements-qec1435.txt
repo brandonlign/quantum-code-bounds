@@ -1,3 +1,0 @@
-# Optional dependency for regenerating the additive-code census.
-# Exact proof replay uses Python's standard library and Node.js.
-pynauty==2.8.8.1

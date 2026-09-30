@@ -9,7 +9,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 const data=JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)),
- "qec1435_disjoint_fourblock_exact_dual.json"),"utf8"));
+ "s5_7_disjoint_certificate.json"),"utf8"));
 const L=Object.entries(data.L).map(([i,v])=>[Number(i),BigInt(v)]);
 const NU=Object.entries(data.NU).map(([i,v])=>[Number(i),BigInt(v)]);
 assert.equal(L.length,43);assert.equal(NU.length,68);

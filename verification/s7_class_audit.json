@@ -254,7 +254,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -263,7 +263,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 39,
@@ -355,7 +355,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -364,7 +364,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -428,7 +428,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -437,7 +437,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 39,
@@ -471,7 +471,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           true,
           false
@@ -480,7 +480,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 27,
@@ -543,7 +543,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -552,7 +552,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -645,7 +645,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -654,7 +654,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 35,
@@ -689,7 +689,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -698,7 +698,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -733,7 +733,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           true,
           false
@@ -742,7 +742,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 23,
@@ -863,7 +863,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -872,7 +872,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "2": 35,
@@ -1110,7 +1110,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -1119,7 +1119,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -1154,7 +1154,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -1163,7 +1163,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -1227,7 +1227,7 @@
       "distance": 5,
       "hull_dimension": 4,
       "physical_lift": {
-        "Hall_capacity": [
+        "capacity_bounds": [
           true,
           false,
           false
@@ -1236,7 +1236,7 @@
         "distance": 5,
         "hull_dim": 4,
         "lagrangian_affine_hole_gate": false,
-        "status": "NO LIFT: EXACT 64-CLASS HALL NECESSITY",
+        "status": "NO LIFT: COSET-CAPACITY BOUND FAILS",
         "suffix_class_spectrum": {
           "0": 1,
           "1": 2,
@@ -1262,9 +1262,9 @@
     "6": 2,
     "8": 2
   },
-  "input": "experiments/qec1435_n10_additive_37_generators_xy.json",
+  "input": "verification/s7_37_classes.json",
   "physical_lift_status_counts": {
-    "NO LIFT: EXACT 64-CLASS HALL NECESSITY": 12,
+    "NO LIFT: COSET-CAPACITY BOUND FAILS": 12,
     "NOT APPLICABLE: symplectic hull dimension is not 4": 25
   }
 }

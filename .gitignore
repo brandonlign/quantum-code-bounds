@@ -1,14 +1,16 @@
-# OS/editor and local environments
 .DS_Store
 .venv/
 __pycache__/
 *.py[cod]
-.pytest_cache/
 
-# Generated LaTeX intermediates; keep the final PDF tracked
+# LaTeX intermediates (the final PDF is tracked)
 *.aux
 *.log
 *.out
+!verification/independent/expected/*.out
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+
+# local-only
+_backups/

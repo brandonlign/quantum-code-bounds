@@ -14,7 +14,7 @@ from pathlib import Path
 
 MOD=2048
 DATA=loads((Path(__file__).resolve().parent /
-    "qec1435_disjoint_fourblock_exact_dual.json").read_text())
+    "s5_7_disjoint_certificate.json").read_text())
 L={int(i):v for i,v in DATA["L"].items()}
 NU={int(i):v for i,v in DATA["NU"].items()}
 assert (len(L),len(NU),DATA["columns"])==(43,68,648)

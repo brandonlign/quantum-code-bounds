@@ -107,20 +107,20 @@ def check_code(g):
  assert multiplicities==[1024]*64 and leaders[0]==0
  prefix,cost,p=make_prefix()
  hist=Counter(leaders)
- halls=(sum(v<=1 for v in leaders[1:])<=8,
+ caps=(sum(v<=1 for v in leaders[1:])<=8,
         sum(v<=2 for v in leaders[1:])<=32,
         sum(v<=3 for v in leaders[1:])<=59)
  summary={'distance':d,'hull_dim':4,'suffix_class_spectrum':dict(hist),
-          'Hall_capacity':list(halls)}
+          'capacity_bounds':list(caps)}
  # The four one-site Z-prefix classes must pull back to an isotropic
  # affine four-deep-hole plane; the remaining three all-Z classes
- # require suffix distance >=3. This is strictly stronger than Hall.
- from qec1435_n10_lagrangian_affine_deep_hole_gate_exact import lagrangian_gate
+ # require suffix distance >=3. This is strictly stronger than the capacity bound.
+ from s6_affine_plane_gate import lagrangian_gate
  geometry=lagrangian_gate(leaders)
  summary['lagrangian_affine_hole_gate']=geometry['lagrangian_affine_hole_gate']
  summary['admissible_all_Z_lagrangian_patterns']=geometry['number_of_admissible_lagrangian_plane_pairs']
- if not all(halls):
-  summary['status']='NO LIFT: EXACT 64-CLASS HALL NECESSITY'
+ if not all(caps):
+  summary['status']='NO LIFT: COSET-CAPACITY BOUND FAILS'
   return summary
  if not geometry['lagrangian_affine_hole_gate']:
   summary['status']='NO LIFT: NO ISOTROPIC ALL-Z FOUR-DEEP-HOLE AFFINE PLANE'
@@ -177,5 +177,5 @@ if __name__=='__main__':
  res=check_code(g)
  if args.generators is None:
   assert res['suffix_class_spectrum']=={0:1,2:39,3:24},res
-  assert res['Hall_capacity']==[True,False,False]
+  assert res['capacity_bounds']==[True,False,False]
  print(json.dumps(res,indent=2,sort_keys=True))

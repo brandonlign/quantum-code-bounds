@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 const GENS=join(dirname(fileURLToPath(import.meta.url)),
-  "qec1435_n10_additive_37_generators_xy.json");
+  "s7_37_classes.json");
 const M=(1<<10)-1;
 function pop(x){let n=0;for(;x;x&=x-1)n++;return n;}
 function rank(a){const piv=new Map();let n=0;for(let v of a){while(v){const j=31-Math.clz32(v);if(piv.has(j))v^=piv.get(j);else{piv.set(j,v);n++;break;}}}return n;}

@@ -5,7 +5,7 @@ Second-language, independently rebuilt EXACT six-site triangle subgroup
 no-go. This JS source derives all physical prefix cosets and all signed
 split-MacWilliams coefficients with BigInt; its immutable multipliers
 must match the separate Python verifier:
-  qec1435_triangle_sixsite_split_shadow_exact.py
+  s5_4_six_site_same_letter.py
 
 H=<ZZZZII, ZZIIZZ> has exactly three weight-four nonidentity words
 on three 2-site-overlapping pair supports. This script asserts

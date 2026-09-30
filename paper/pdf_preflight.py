@@ -96,7 +96,7 @@ def main() -> int:
             "one-proof conclusion": "Conclusion",
             "references": "References",
             "complete additive census": "37",
-            "Hall obstruction": "Hall",
+            "coset-capacity bound": "coset-capacity",
             "visible repository URL": "https://github.com/brandonlign/quantum-code-bounds",
         }
         for label, needle in expected.items():

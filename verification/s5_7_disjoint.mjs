@@ -10,7 +10,7 @@
  */
 import { readFileSync } from "node:fs";
 const D=JSON.parse(readFileSync(
-  new URL("./qec1435_disjoint_fourblock_exact_dual.json",import.meta.url),
+  new URL("./s5_7_disjoint_certificate.json",import.meta.url),
   "utf8"
 ));
 const pc=n=>{let v=0;while(n){n&=n-1;v++}return v};

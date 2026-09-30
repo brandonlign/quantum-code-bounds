@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Audit all 37 independently censused additive length-10 representatives.
 
-The input is the JSON emitted by ``qec1435_n10_additive_lengthening_census.py``.
+The input is the JSON emitted by ``s7_census.py``.
 This script checks the codebook invariants again, computes the exact binary
 trace-symplectic hull, applies the ambient four-deep-hole gate to every class,
 and sends only hull-four classes through the exact physical-lift verifier.
@@ -17,8 +17,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from qec1435_n10_ambient_four_deep_hole_gate_exact import deep_holes
-from qec1435_n10_full_physical_symplectic_lift_exact import (
+from s6_deep_hole_gate import deep_holes
+from s6_lift_test import (
     basis,
     check_code,
     nullspace,
@@ -111,12 +111,12 @@ def main() -> None:
     parser.add_argument(
         "--generators",
         type=Path,
-        default=Path("experiments/qec1435_n10_additive_37_generators_xy.json"),
+        default=Path("verification/s7_37_classes.json"),
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("experiments/qec1435_n10_additive_37_class_audit.json"),
+        default=Path("verification/s7_class_audit.json"),
     )
     args = parser.parse_args()
     result = audit(args.generators)

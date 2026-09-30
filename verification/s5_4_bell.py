@@ -21,7 +21,7 @@ giving c>=0 and nu rhs=-320017816092672. No numerical optimization
 or external small-code classification is invoked in verification.
 
 To reproduce:
-  python experiments/qec1435_order2_m4_bell_split_shadow_exact.py
+  python verification/s5_4_bell.py
 """
 from math import comb
 SCALE=2048

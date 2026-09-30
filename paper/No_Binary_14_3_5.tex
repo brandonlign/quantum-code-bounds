@@ -49,7 +49,7 @@ minimum distance at least five, and symplectic hull dimension four. By
 exhaustive lengthening, we reconstruct all 37 equivalence classes of
 length-ten binary-additive codes of size 1,024 and minimum distance at
 least five. Of these, 12 have symplectic hull dimension four; the other
-25 do not, and the 12 violate the necessary coset-capacity bound. Together with the known
+25 do not, and the remaining 12 violate a necessary coset-capacity bound. Together with the known
 \(\left[\!\left[14,3,4\right]\!\right]\) construction, this proves
 \(d_{\max}(14,3)=4\) for binary stabilizer codes.
 \end{abstract}
@@ -301,6 +301,8 @@ A_{4} \in \{1,3\}.
 
 For each specified subgroup, we derive a relaxation satisfied by every hypothetical code containing it. A Farkas certificate excludes the remaining low-weight configurations when the relaxation is infeasible.
 
+The exclusions are used in the following order, and no step depends on a later one: Lemma~\ref{lem:low-weight} and the parity congruence (Section~4) \(\to\) Section~5.3 (\(A_2=0\), using only Lemma~\ref{lem:low-weight}) \(\to\) Section~5.4 (pairs of weight-four words) \(\to\) Section~5.5 (support geometry) \(\to\) Sections~5.6--5.7 (the \(A_4=3\) geometries, which also use \(A_2=0\)) \(\to\) Lemma~\ref{lem:unique-check}.
+
 \subsection{A necessary coset-counting relaxation}\label{a-necessary-coset-counting-relaxation}
 
 Let \(R \leq S\) be an isotropic subgroup supported on \(m\) of the original qubits, with the remaining \(f=14-m\) sites forming a suffix. Every element of \(S\) commutes with \(R\), so its prefix lies in \(R^\perp\). Also, \(S\) is a union of complete \(R\)-cosets.
@@ -323,7 +325,7 @@ H_{a,b} &=\sum_{p} p_{a} y_{p,b}.
 \end{aligned}
 \]
 
-This is a necessary model for a real code. It deliberately forgets the actual prefix coset label, the suffix Pauli label, and all global linear compatibility among different suffixes. It therefore enlarges the feasible set. A contradiction in this relaxation excludes a physical code; feasibility would prove nothing.
+The model requires only \(R\leq S\); it does not assume that \(R\) is all of \(S\cap V_{\mathrm{pref}}\). If \(S\) contains further prefix-supported words, they are still counted correctly, because \(S\) is a union of complete \(R\)-cosets. This is a necessary model for a real code. It deliberately forgets the actual prefix coset label, the suffix Pauli label, and all global linear compatibility among different suffixes. It therefore enlarges the feasible set. A contradiction in this relaxation excludes a physical code; feasibility would prove nothing.
 
 For every such model we use the following row families:
 
@@ -420,7 +422,7 @@ The Farkas certificate has 13 nonnegative inequality multipliers and 10 nonzero 
 \end{aligned}
 \]
 
-Thus \(A_{2}=0\) for every hypothetical code. The repository README names both verification scripts and gives the standard replay command.
+Thus \(A_{2}=0\) for every hypothetical code.
 
 \subsection{Excluding overlapping low-weight stabilizer words}\label{excluding-overlapping-low-weight-checks}
 
@@ -476,7 +478,7 @@ This excludes a pair of weight-four Bell stabilizer words with the same support.
 
 \subsubsection{The five-site overlap subgroup}\label{the-five-site-overlap-subgroup}
 
-If two commuting weight-four words overlap in three sites and differ on two of those sites, local Clifford conjugation gives
+If two commuting weight-four words overlap in three sites and differ on two of those sites, choose a local Clifford operation independently at each site. At each of the two sites where the letters differ, map the ordered pair of letters to \((X,Z)\). At the third common site, and at each site used by only one word, map the letter to \(Z\). After a site permutation this gives
 
 \[
 \begin{aligned}
@@ -548,7 +550,7 @@ The preceding subgroup exclusions remove every case with \(t \geq 2\), as shown 
 \end{center}
 }
 
-The omitted case \(t=4,h=0\) would give the same Pauli word twice, not two distinct stabilizer words. Thus two distinct weight-four stabilizer words meet in at most one qubit. If they meet in one, commutation forces the same local Pauli letter there. Local Clifford transformations therefore map all weight-four stabilizer words to Z-only words simultaneously. This does not imply that the full stabilizer is CSS.
+The omitted case \(t=4,h=0\) would give the same Pauli word twice, not two distinct stabilizer words. Thus two distinct weight-four stabilizer words meet in at most one qubit. If they meet in one, commutation forces the same local Pauli letter there. Hence every qubit carries at most one nonidentity letter across all weight-four stabilizer words, and a single local Clifford operation at each qubit sends that letter to \(Z\). Local Clifford transformations therefore map all weight-four stabilizer words to Z-only words simultaneously. This does not imply that the full stabilizer is CSS.
 
 \begin{minipage}{\linewidth}
 If \(A_{4}=3\), the three weight-four stabilizer words are linearly independent: the sum of any two has weight six or eight, not four. Their support sets are pairwise disjoint or meet in one site. Up to site permutation and reordering, there are exactly five support patterns:
@@ -751,7 +753,7 @@ For each \(\xi=w+C\), there is a unique \(e(\xi)\in E\) such that
 \]
 The symplectic form on \(P/J\) identifies \((P/J)^*\) with \(P/J\), and \(T\) induces a symplectic isomorphism \(P/J\to E\). The perfect pairing above therefore identifies \(J^\perp_{W}/C\) with \(E\), so \(\xi\mapsto e(\xi)\) is a bijection and sends zero to zero.
 
-We use a Hall-type counting argument to bound how many low-cost prefix classes a valid code can use. For \(e\in E\), define its physical prefix cost by
+We use a counting argument to bound how many low-cost prefix classes a valid code can use. For \(e\in E\), define its physical prefix cost by
 \[
 \operatorname{cost}(e)=
 \min\{\operatorname{wt}(v):v\in p^\perp\cap V_{4},\ v+\langle p\rangle=e\}.
@@ -798,7 +800,7 @@ The capacities are the numbers of nonzero prefix classes of cost at least 4, 3, 
 
 \subsection{What is classified}\label{what-is-classified}
 
-Under the standard Pauli/additive-code correspondence \cite{calderbank-shor-sloane}, represent a quaternary symbol by two binary bits. A length-\(n\) additive code is a binary subspace of \(\mathbb{F}_{2}^{2n}\), with quaternary Hamming weight equal to physical Pauli weight. Equivalence is coordinate permutation plus an arbitrary local \(\operatorname{GL}(2,2)\) map on each two-bit symbol plane. This is exactly the binary local symplectic monomial equivalence relevant here. No global \(\operatorname{GF}(4)\) scalar-linearity is assumed.
+Under the standard Pauli/additive-code correspondence \cite{calderbank-shor-sloane}, represent a quaternary symbol by two binary bits. A length-\(n\) additive code is a binary subspace of \(\mathbb{F}_{2}^{2n}\), with quaternary Hamming weight equal to physical Pauli weight. Equivalence is coordinate permutation plus an arbitrary local \(\operatorname{GL}(2,2)\) map on each two-bit symbol plane. This is exactly the binary local symplectic monomial equivalence relevant here. No global \(\operatorname{GF}(4)\) scalar-linearity is assumed. Since \(\operatorname{GL}(2,2)=\operatorname{Sp}(2,2)\), every such map preserves the symplectic form and Pauli weight. Hence the hull dimension of \(C\) and the minimum-weight spectrum of the cosets \(J^\perp_W/C\) used in Section~6.2 are invariants of the equivalence class, so it suffices to check one representative per class.
 
 Grassl, Krotov, Sok, and Solé \cite{grassl-et-al} report 37 equivalence classes in the \((n,k)=(10,10)\) cell of their additive \((n,2^{k}, \geq 5)_{4}\) classification (Section~2.3, Table 1 of \emph{The punctured dodecacode is unique}). They report the count, not the 37 generator matrices. We reconstruct the classes by lengthening. The published counts serve as cross-checks: the census generates candidates from predecessor cells and decides equivalence by the graph certificates described below; the table counts do not by themselves establish completeness.
 
@@ -848,7 +850,38 @@ Every zero-count predecessor cell listed above is computed and verified empty ra
 
 \subsection{Equivalence certificates}\label{equivalence-certificates}
 
-For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a reordering of codewords, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). Thus the graph certificate gives a canonical additive-monomial equivalence test; the weight and pair-rank invariants only filter candidates before canonicalization. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}.
+For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a reordering of codewords, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). Thus the graph certificate gives a canonical additive-monomial equivalence test; the weight and pair-rank invariants only filter candidates before canonicalization. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}, via \texttt{pynauty} 2.8.8.1.
+
+Completeness does not rest on the published counts. The census keeps one representative for every certificate it generates, so no orbit reached by an extension is discarded. As an internal check that no orbit was lost or duplicated, an independent second census (\texttt{verification/independent/}) with a different graph encoding verifies, in every one of the 36 cells it computes, the orbit--stabilizer identity
+\[
+\sum_{P}\frac{m!\,6^{m}}{\lvert\operatorname{Aut}P\rvert}\,\operatorname{ext}_r(P)
+=\sum_{D}\frac{(m+1)!\,6^{m+1}}{\lvert\operatorname{Aut}D\rvert},
+\]
+where \(P\) runs over parent classes, \(\operatorname{ext}_r(P)\) counts labelled extensions of rank \(r\), and \(D\) runs over the classes found. In the target cell both sides equal \(2{,}333{,}060{,}795{,}842{,}560\). The automorphism-group orders of the 37 classes are listed in Table~\ref{tab:aut}; the two censuses produce the same 37 canonical certificates.
+
+{\small
+\setlength{\tabcolsep}{5pt}
+\begin{center}
+\captionof{table}{Hull dimension and automorphism-group order \(\lvert\operatorname{Aut}\rvert\) (coordinate permutations and per-site \(\operatorname{GL}(2,2)\)) of the 37 length-ten classes, numbered as in the repository.}
+\label{tab:aut}
+\begin{tabular}{@{}rrr@{\hspace{14pt}}rrr@{\hspace{14pt}}rrr@{\hspace{14pt}}rrr@{}}
+\toprule
+class & hull & \(\lvert\operatorname{Aut}\rvert\) & class & hull & \(\lvert\operatorname{Aut}\rvert\) & class & hull & \(\lvert\operatorname{Aut}\rvert\) & class & hull & \(\lvert\operatorname{Aut}\rvert\) \\
+\midrule
+1 & 2 & 2 & 2 & 2 & 1 & 3 & 0 & 2 & 4 & 0 & 10 \\
+5 & 2 & 2 & 6 & 0 & 2 & 7 & 0 & 2 & 8 & 0 & 30 \\
+9 & 4 & 48 & 10 & 2 & 30 & 11 & 2 & 24 & 12 & 4 & 16 \\
+13 & 2 & 2 & 14 & 4 & 12 & 15 & 4 & 6 & 16 & 0 & 2 \\
+17 & 4 & 16 & 18 & 2 & 8 & 19 & 2 & 1 & 20 & 4 & 5 \\
+21 & 4 & 16 & 22 & 4 & 1 & 23 & 2 & 2 & 24 & 8 & 6 \\
+25 & 0 & 2 & 26 & 4 & 5 & 27 & 2 & 2 & 28 & 2 & 5 \\
+29 & 6 & 5 & 30 & 6 & 10 & 31 & 2 & 5 & 32 & 8 & 27 \\
+33 & 2 & 8 & 34 & 4 & 8 & 35 & 4 & 16 & 36 & 2 & 10 \\
+37 & 4 & 8 &  &  &  &  &  &  &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{center}
+}
 
 \subsection{Hull and coset-capacity results}\label{hull-and-coset-capacity-results}
 
@@ -914,25 +947,28 @@ The first exclusion follows from Table~\ref{tab:hull}. For every remaining class
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Assume a binary \(\left[\!\left[14,3,d\geq 5\right]\!\right]\) stabilizer code exists. Sections~3--4 give \(A_{1}=A_{3}=0\), \(A_{2}\leq2\), and \(A_{4}\in\{1,3\}\). Section~5.3 then excludes weight-two stabilizer words, so \(A_{2}=0\). Sections~5.3--5.5 exclude all pairs of distinct weight-four stabilizer words whose supports intersect in at least two sites and classify the \(A_4=3\) case into five support geometries. Section~5.6 excludes the four overlapping rank-three geometries, and Section~5.7 excludes the disjoint \(4+4+4+2\) geometry. Hence \(A_{4}=1\), which is Lemma~\ref{lem:unique-check}.
 
-Lemma~\ref{lem:ten-site} then forces a ten-site additive code of size 1,024, distance at least five, and hull dimension four. By Lemma 5, none of the 37 equivalence classes of length-ten additive codes of size 1,024 and distance at least five can supply the code required by Lemma 4: 25 have the wrong hull dimension, and the remaining 12 violate the coset-capacity bound. This is a contradiction.
+Lemma~\ref{lem:ten-site} then forces a ten-site additive code of size 1,024, distance at least five, and hull dimension four. By Lemma~\ref{lem:additive-lift}, none of the 37 equivalence classes of length-ten additive codes of size 1,024 and distance at least five can supply the code required by Lemma~\ref{lem:ten-site}: 25 have the wrong hull dimension, and the remaining 12 violate the coset-capacity bound. This is a contradiction.
 \end{proof}
 
 The proof applies to these parameters and to stabilizer codes; it gives no bound at other lengths or for non-stabilizer codes.
 
 \section{Computational material}\label{computational-material}
 
-The verification uses Farkas certificates for the split-weight systems and an exhaustive classification of length-ten additive codes. The standard replay requires Python 3.10 or newer and Node.js. From the repository root, run
-\begin{center}
-\texttt{bash experiments/qec1435\_replay\_nonexistence.sh}
-\end{center}
-This replay checks the certificate arithmetic and the committed class representatives but does not regenerate the classification. The optional \texttt{--census} mode reconstructs the classification and requires the pinned \texttt{pynauty==2.8.8.1} dependency. The pin and detailed verification instructions are included in the repository. Replay outputs are temporary and do not replace the committed representatives or audit data.
-
-\Needspace{4\baselineskip}
-The public repository is
+The verification uses exact integer Farkas certificates for the split-weight systems and an exhaustive classification of length-ten additive codes. No floating-point computation is used as a proof step. The repository is
 \begin{center}
 \url{https://github.com/brandonlign/quantum-code-bounds}
 \end{center}
+With Python 3.10 or newer and Node.js, the command
+\begin{center}
+\texttt{bash verification/replay.sh}
+\end{center}
+replays every certificate of Sections~4--7, most of them in two separate implementations (Python and JavaScript with BigInt), and checks the 37 committed class representatives. The option \texttt{--census} also regenerates the classification from scratch, which takes a few minutes and requires \texttt{pynauty==2.8.8.1}. The script names follow the section numbers of this paper.
 
+A second, separately written set of checks in \texttt{verification/independent/} rebuilds the argument from the text: the Lemma~\ref{lem:low-weight} identity and parity congruence, the completeness of Table~\ref{tab:obstruction}, all Section~5 relaxations (with a floating-point LP solver, as corroboration only), an independent census with the orbit--stabilizer check of Section~\ref{equivalence-certificates}, and the hull and coset spectra of Table~\ref{tab:coset-capacity}.
+
+\section*{Acknowledgments}
+
+Generative-AI tools (ChatGPT, Codex and Claude) assisted with exploring proof strategies, checking derivations, writing verification code, and editing the text. The author directed the research, checked the mathematical arguments and computational results, and takes full responsibility for the content.
 
 \Needspace{20\baselineskip}
 \begin{thebibliography}{99}

@@ -9,7 +9,7 @@ representatives:
   * minimum quaternary (Pauli) weight
   * symplectic hull dimension dim(C cap C^perp)
   * the 64 coset leaders of J^perp / C, J = hull
-  * the three Hall capacities  N_{<=1}<=8, N_{<=2}<=32, N_{<=3}<=59
+  * the three coset-capacity bounds  N_{<=1}<=8, N_{<=2}<=32, N_{<=3}<=59
 
 and independently recomputes the prefix cost distribution on
 (p^perp cap V4)/<p> for p = ZZZZ.
@@ -172,7 +172,7 @@ def audit_code(gens):
     result.update({
         "spectrum": dict(sorted(spec.items())),
         "N_le1": n1, "N_le2": n2, "N_le3": n3,
-        "hall_ok": (n1 <= 8 and n2 <= 32 and n3 <= 59),
+        "capacity_ok": (n1 <= 8 and n2 <= 32 and n3 <= 59),
     })
     return result
 
@@ -184,17 +184,17 @@ def main():
     cap1 = sum(v for k, v in cost.items() if k >= 4)
     cap2 = sum(v for k, v in cost.items() if k >= 3)
     cap3 = sum(v for k, v in cost.items() if k >= 2)
-    print(f"independent Hall capacities: N<=1 -> {cap1}, N<=2 -> {cap2}, N<=3 -> {cap3}")
+    print(f"independent coset capacities: N<=1 -> {cap1}, N<=2 -> {cap2}, N<=3 -> {cap3}")
     assert (cap1, cap2, cap3) == (8, 32, 59)
 
     path = sys.argv[1] if len(sys.argv) > 1 else \
-        "experiments/qec1435_n10_additive_37_generators_xy.json"
+        "verification/s7_37_classes.json"
     gens_list = json.load(open(path))
     print(f"\nloaded {len(gens_list)} representatives from {path}")
 
     hull_counts = Counter()
     dist_counts = Counter()
-    hall_fail = 0
+    capacity_fail = 0
     hull4 = 0
     rows = []
     for i, gens in enumerate(gens_list, 1):
@@ -203,12 +203,12 @@ def main():
         dist_counts[r["d"]] += 1
         if r["hull_dim"] == 4:
             hull4 += 1
-            if not r["hall_ok"]:
-                hall_fail += 1
+            if not r["capacity_ok"]:
+                capacity_fail += 1
             rows.append((i, r))
     print("distances:", dict(sorted(dist_counts.items())))
     print("hull dimensions:", dict(sorted(hull_counts.items())))
-    print(f"\nhull-four classes: {hull4}; Hall failures: {hall_fail}")
+    print(f"\nhull-four classes: {hull4}; capacity failures: {capacity_fail}")
     print(f"{'class':>6} {'N<=1':>5} {'N<=2':>5} {'N<=3':>5}  spectrum")
     for i, r in rows:
         print(f"{i:>6} {r['N_le1']:>5} {r['N_le2']:>5} {r['N_le3']:>5}  {r['spectrum']}")
@@ -217,7 +217,7 @@ def main():
     books = [frozenset(span(g)) for g in gens_list]
     print(f"\ndistinct codebooks among representatives: {len(set(books))}")
 
-    ok = (hull4 == 12 and hall_fail == 12
+    ok = (hull4 == 12 and capacity_fail == 12
           and dict(hull_counts) == {0: 7, 2: 14, 4: 12, 6: 2, 8: 2})
     print("\nINDEPENDENT AUDIT:", "PASS" if ok else "MISMATCH")
     return 0 if ok else 1

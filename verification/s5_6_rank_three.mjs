@@ -7,14 +7,14 @@
  * Imports ONLY integer multipliers and expected row/column totals from
  * the Python certificate source. It imports no Python computations.
  *
- * Node stdlib: node experiments/qec1435_sparse_h4_rank3_four_bigint_independent.mjs
+ * Node stdlib: node verification/s5_6_rank_three.mjs
  */
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 let txt=readFileSync(join(dirname(fileURLToPath(import.meta.url)),
- "qec1435_sparse_h4_rank3_four_exact.py"),"utf8");
+ "s5_6_rank_three.py"),"utf8");
 let source=txt.split("CERT = ")[1].split("\n\ndef poly")[0];
 source=source.replace(/'/g,'"')
  .replace(/([{,]\s*)(\d+)\s*:/g,'$1"$2":')

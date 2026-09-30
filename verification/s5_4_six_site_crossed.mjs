@@ -5,7 +5,7 @@ Second-language, independently rebuilt EXACT six-site crossed-overlap subgroup
 no-go. This JS source derives all physical prefix cosets and all signed
 split-MacWilliams coefficients with BigInt; its immutable multipliers
 must match the separate crossed-overlap Python verifier:
-  qec1435_crossed_bell_sixsite_split_shadow_exact.py
+  s5_4_six_site_crossed.py
 
  H=<ZZZZII, XXIIXX> has nonzero subgroup weights 4,4,6 on
 two 2-site-overlapping pair supports. This script asserts
