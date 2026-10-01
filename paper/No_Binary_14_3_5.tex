@@ -140,7 +140,7 @@ This is one exactly when \((x,z)\) is nonzero, so on \(V_{n}\) it satisfies
 
 \[
 \begin{aligned}
-q(v) &=\operatorname{wt}(v) \pmod 2, \\
+q(v) &\equiv\operatorname{wt}(v) \pmod 2, \\
 q(v+w) &=q(v) + q(w) + \langle v,w \rangle.
 \end{aligned}
 \]
@@ -227,7 +227,7 @@ Hence \(U_{j} \geq 0\) for every \(j\). Also \(A_{0}=1\), \(\sum_{j} A_{j}=2048\
 If \(d(S)\geq5\), then \(A_1=A_3=0\), \(A_2\leq2\), and \(A_4\leq3\).
 \end{lemma}
 \begin{proof}
-Expanding the Krawtchouk transforms in \(T_{j}\) and \(U_{j}\) gives the coefficientwise identity
+The proof uses only the following identity between the \(A_j\), \(T_j\), and \(U_j\); its coefficients were found by computer, and it can be checked by expanding the Krawtchouk transforms in \(T_{j}\) and \(U_{j}\):
 
 \[
 \begin{aligned}
@@ -264,9 +264,9 @@ Lemma~\ref{lem:low-weight} does not rule out \(A_{4}=0\), but an integrality con
 
 \[
 \begin{aligned}
-E_{0} &=\sum_{w} A_{w}=2048, \\
-E_{j} &=T_{j} -2048 A_{j},\qquad j=1,\dots,4, \\
-F_{j} &=U_{j} -2048 \Sh_{j},\qquad j=0,\dots,3.
+\Delta_{0} &=\sum_{w} A_{w}, \\
+\Delta_{j} &=T_{j} -2048 A_{j},\qquad j=1,\dots,4, \\
+\Gamma_{j} &=U_{j} -2048 \Sh_{j},\qquad j=0,\dots,3.
 \end{aligned}
 \]
 
@@ -274,12 +274,12 @@ Take the integer combination
 
 \[
 \begin{aligned}
-L &=E_{0} -2E_{1} -6E_{2} -17E_{3} -95E_{4} \\
-& -20F_{0} -24F_{1} +1108F_{2} +246F_{3}.
+L &=\Delta_{0} -2\Delta_{1} -6\Delta_{2} -17\Delta_{3} -95\Delta_{4} \\
+& -20\Gamma_{0} -24\Gamma_{1} +1108\Gamma_{2} +246\Gamma_{3}.
 \end{aligned}
 \]
 
-The equations give \(L=2048\). Writing \(c_j\) for the coefficient of \(A_j\), direct expansion gives
+Since \(\Delta_0=2048\) and \(\Delta_j=\Gamma_j=0\) for the other indices, \(L=2048\). Writing \(c_j\) for the coefficient of \(A_j\), direct expansion gives
 
 \[
 \begin{aligned}
@@ -595,11 +595,11 @@ The first three hold by Lemma~\ref{lem:low-weight} and Section~5.3; the last is 
 
 {\small
 \setlength{\tabcolsep}{3pt}
-\captionof{table}{Farkas certificates excluding the four non-disjoint geometries of Table~\ref{tab:support-geometry}.}
+\captionof{table}{Farkas certificates excluding the four non-disjoint geometries of Table~\ref{tab:support-geometry}. The fifth column counts the inequality rows with a positive multiplier; Table~\ref{tab:app-systems} also counts the equality rows used.}
 \label{tab:rank-three}
 \begin{tabularx}{\linewidth}{@{}X>{\centering\arraybackslash}p{1.0cm}>{\centering\arraybackslash}p{1.4cm}>{\centering\arraybackslash}p{1.6cm}>{\centering\arraybackslash}p{1.9cm}>{\centering\arraybackslash}p{2.1cm}@{}}
 \toprule
-geometry & sites & patterns & variables & positive multipliers & \(\nu\cdot\rhs\) \\
+geometry & sites & patterns & variables & rows with \(\lambda>0\) & \(\nu\cdot\rhs\) \\
 \midrule
 three distinct intersections & 9+5 & 40 & 240 & 12 & \(-86{,}470{,}656\) \\
 one common site & 10+4 & 27 & 135 & 13 & \(-9{,}031{,}680\) \\
@@ -666,6 +666,8 @@ The parity restriction gives \(A_4\in\{1,3\}\), and Sections~5.3--5.7 exclude \(
 
 \section{Reduction to a ten-site additive code}\label{reduction-to-a-ten-site-additive-code}
 
+When the weight-four word \(p\) is the only stabilizer word of weight at most four, the rest of the stabilizer is determined by its restriction to the other ten qubits together with a map to the four sites of \(p\). The lemma below turns this into a statement about a single additive code of length ten.
+
 \Needspace{11\baselineskip}
 \begin{lemma}[Ten-site reduction]\label{lem:ten-site}
 Suppose \(S\leq V_{14}\) is isotropic of dimension 11, has \(d(S)\geq5\), and its only nonzero stabilizer word of physical weight at most four is a word \(p\) of weight four. Equivalently, \(A_1=A_2=A_3=0\) and \(A_4=1\). Then there exists a binary subspace \(C\leq V_{10}\) of dimension 10, minimum Pauli weight at least five, and \(\dim(C\cap C^\perp)=4\).
@@ -683,22 +685,22 @@ E &=(p^\perp \cap V_{4}) / \langle p \rangle.
 
 The quotient is nondegenerate symplectic: \(p^\perp \cap V_{4}\) has binary dimension seven, and quotienting by its one-dimensional radical \(\langle p \rangle\) leaves dimension six.
 
-By the hypothesis, \(S \cap V_{4}=\langle p \rangle\), so projection of \(S/\langle p \rangle\) to \(W_{10}\) is injective. Let its image be a binary ten-space \(P \leq W_{10}\). Then there is a linear map \(T:P\to E\) such that
+By the hypothesis, \(S \cap V_{4}=\langle p \rangle\), so projection of \(S/\langle p \rangle\) to \(W_{10}\) is injective. Let its image be a binary ten-space \(P \leq W_{10}\). Then there is a linear map \(\tau:P\to E\) such that
 
 \[
 \begin{aligned}
-S/\langle p \rangle &=\{ T(x)+x : x \in P \}, \\
-\langle x,y \rangle_{W} &=\langle T(x),T(y) \rangle_{E}.
+S/\langle p \rangle &=\{ \tau(x)+x : x \in P \}, \\
+\langle x,y \rangle_{W} &=\langle \tau(x),\tau(y) \rangle_{E}.
 \end{aligned}
 \]
 
 \subsection{Distance forces surjectivity}\label{distance-forces-surjectivity}
 
-Suppose \(z \in E\) is orthogonal to \(\operatorname{im}(T)\). Choose a four-site representative \(v\) of \(z\) in \(p^\perp\). It commutes with \(p\) and with every element of the graph, hence \(v \in S^\perp\). Its weight on the original qubits is at most four. Distance at least five forces \(v \in S\). But \(S \cap V_{4}=\langle p \rangle\), so \(z=0\). Thus \((\operatorname{im}(T))^\perp=0\). Nondegeneracy of \(E\) gives \(\operatorname{im}(T)=E\), and therefore
+Suppose \(z \in E\) is orthogonal to \(\operatorname{im}(\tau)\). Choose a four-site representative \(v\) of \(z\) in \(p^\perp\). It commutes with \(p\) and with every element of the graph, hence \(v \in S^\perp\). Its weight on the original qubits is at most four. Distance at least five forces \(v \in S\). But \(S \cap V_{4}=\langle p \rangle\), so \(z=0\). Thus \((\operatorname{im}(\tau))^\perp=0\). Nondegeneracy of \(E\) gives \(\operatorname{im}(\tau)=E\), and therefore
 
 \[
 \begin{aligned}
-\operatorname{rank}(T)=6,\qquad \dim \operatorname{ker}(T)=10-6=4.
+\operatorname{rank}(\tau)=6,\qquad \dim \operatorname{ker}(\tau)=10-6=4.
 \end{aligned}
 \]
 
@@ -706,7 +708,7 @@ Surjectivity also identifies the radical of the pairing on \(P\):
 
 \[
 \begin{aligned}
-\operatorname{rad}(P)=P \cap P^\perp_{W}=\operatorname{ker}(T),\qquad \dim \operatorname{rad}(P)=4.
+\operatorname{rad}(P)=P \cap P^\perp_{W}=\operatorname{ker}(\tau),\qquad \dim \operatorname{rad}(P)=4.
 \end{aligned}
 \]
 
@@ -729,6 +731,9 @@ Then \(\dim C=10\), so \(\lvert C\rvert=1024\). If a nonzero \(c \in C\) had phy
 
 \subsection{A necessary coset-capacity bound}\label{a-necessary-coset-capacity-bound}
 
+This subsection proves a counting bound on \(C\). Each nonzero coset \(\xi\) defined below is matched with a different nonzero class \(e(\xi)\) of four-site prefixes. A centralizer element built from the two has weight \(d(\xi)+\operatorname{cost}(e(\xi))\), which must be at least five, so low-weight cosets need high-cost prefix classes. There are only 8, 32, and 59 prefix classes of cost at least 4, 3, and 2, and this limits the number of low-weight cosets.
+
+
 Let \(J=C \cap C^\perp_{W}\), so \(\dim J=4\), and let \(P=C^\perp_{W}\). The quotient \(P/J\) is a nondegenerate six-dimensional symplectic space. Also \(J^\perp_{W}/C\) has 64 suffix cosets. For \(\xi=w+C\in J^\perp_{W}/C\), put
 \[
 d(\xi)=\min_{c\in C}\operatorname{wt}(w+c).
@@ -745,10 +750,10 @@ is well defined and nondegenerate: its left kernel is \(P^\perp_{W}=C\), and bot
 
 For each \(\xi=w+C\), there is a unique \(e(\xi)\in E\) such that
 \[
-\langle e(\xi),T(x)\rangle_{E}=\langle w,x\rangle_{W}
+\langle e(\xi),\tau(x)\rangle_{E}=\langle w,x\rangle_{W}
 \qquad(x\in P).
 \]
-The symplectic form on \(P/J\) identifies \((P/J)^*\) with \(P/J\), and \(T\) induces a symplectic isomorphism \(P/J\to E\). The perfect pairing above therefore identifies \(J^\perp_{W}/C\) with \(E\), so \(\xi\mapsto e(\xi)\) is a bijection and sends zero to zero.
+The symplectic form on \(P/J\) identifies \((P/J)^*\) with \(P/J\), and \(\tau\) induces a symplectic isomorphism \(P/J\to E\). The perfect pairing above therefore identifies \(J^\perp_{W}/C\) with \(E\), so \(\xi\mapsto e(\xi)\) is a bijection and sends zero to zero.
 
 For \(e\in E\), define its physical prefix cost by
 \[
@@ -781,7 +786,7 @@ d(\xi)+\operatorname{cost}(e(\xi))\geq5
 \qquad(\xi\ne0).
 \]
 
-Since \(\xi\mapsto e(\xi)\) is a bijection, the cost distribution gives the following bounds whatever the map \(T\) is:
+Since \(\xi\mapsto e(\xi)\) is a bijection, the cost distribution gives the following bounds whatever the map \(\tau\) is:
 
 \[
 \begin{aligned}
@@ -843,13 +848,13 @@ length \(n\) & required binary dimensions \(k\): number of classes \\
 \end{longtable}
 }
 
-The cells with zero classes are computed and found to be empty, not skipped. Hence Table~\ref{tab:predecessors} covers every predecessor cell needed to reach \((10,10)\).
+The cells with zero classes are computed and found to be empty, not skipped. The recurrence also refers to cells of larger dimension that are not listed, such as \((7,9)\) and \((6,8)\). These are empty as well: a code of binary dimension \(k\) and distance at least five contains a subcode of dimension \(k-1\) with the same property, so emptiness of \((n,k)\) implies emptiness of \((n,k')\) for every \(k'>k\), and each unlisted cell lies above a listed empty cell of the same length. Hence the census reaches every code in the \((10,10)\) cell.
 
 \subsection{Equivalence certificates}\label{equivalence-certificates}
 
 For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a reordering of codewords, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). Thus the graph certificate gives a canonical additive-monomial equivalence test; the weight and pair-rank invariants only filter candidates before canonicalization. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}, via \texttt{pynauty} 2.8.8.1.
 
-The census keeps one representative for every certificate it generates, so no class reached by an extension is discarded. To check that no class was lost or counted twice, we recompute the census with a different graph encoding (\texttt{verification/s7\_mass\_check.py}) and verify, in each of the 36 cells it computes, the orbit--stabilizer identity
+The census keeps one representative for every certificate it generates, so no class reached by an extension is discarded. To check that no class was lost or counted twice, we recompute the census with a different graph encoding (\texttt{verification/s7\_mass\_check.py}) and verify the orbit--stabilizer identity in each of the 36 cells \((n,k)\) with \(5\leq n\leq10\) and \(\max(0,2n-10)\leq k\leq10\), including the unlisted empty cells:
 \[
 \sum_{P}\frac{m!\,6^{m}}{\lvert\operatorname{Aut}P\rvert}\,\operatorname{ext}_r(P)
 =\sum_{D}\frac{(m+1)!\,6^{m+1}}{\lvert\operatorname{Aut}D\rvert},
@@ -1085,7 +1090,7 @@ A certificate is a finite list of (row, multiplier) pairs. For each system, the 
 {\small
 \setlength{\tabcolsep}{3pt}
 \begin{center}
-\captionof{table}{The eleven Section~5 systems. Blocks give \((m_1,\dots,m_r;f)\). ``Pat.'' is the number of coset patterns per block. Generators act on the block sites in order, and in Section~5.7 each of the three blocks carries \(\mathtt{ZZZZ}\).}
+\captionof{table}{The eleven Section~5 systems. Blocks give \((m_1,\dots,m_r;f)\). ``Pat.'' is the number of coset patterns per block, and ``rows used'' is the number of rows, equalities and inequalities, with a nonzero multiplier. Generators act on the block sites in order, and in Section~5.7 each of the three blocks carries \(\mathtt{ZZZZ}\).}
 \label{tab:app-systems}
 \begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xlrrrr@{}}
 \toprule
