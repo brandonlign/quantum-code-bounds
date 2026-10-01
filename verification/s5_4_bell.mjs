@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-/* INDEPENDENT JS/BigInt verifier for ORIGINAL-physical 4+10 Bell
+/* JS/BigInt verifier for ORIGINAL-physical 4+10 Bell
  * split-shadow certificate. The sparse immutable multipliers are copied
  * from the main Python certificate, but EVERY Krawtchouk coefficient,
  * original 55-cell transform, 39 equality rows, 165 inequality rows,
@@ -95,7 +95,7 @@ for(let col=0;col<nvar;col++){
  assert.ok(q>=0n);if(q>0n)pos++;
 }
 assert.equal(pos,17);
-console.log("PASS INDEPENDENT BIGINT ORIGINAL 4+10 BELL SPLIT-SHADOW");
+console.log("PASS BIGINT ORIGINAL 4+10 BELL SPLIT-SHADOW");
 console.log(JSON.stringify({physicalWeightCells:nvar,equalities:E.length,
  inequalities:G.length,positiveInequalityMultipliers:11,
  equalityMultipliers:28,positiveResidualCells:pos,

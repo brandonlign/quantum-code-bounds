@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit all 37 independently censused additive length-10 representatives.
+"""Audit all 37 censused additive length-10 representatives.
 
 The input is the JSON emitted by ``s7_census.py``.
 This script checks the codebook invariants again, computes the exact binary

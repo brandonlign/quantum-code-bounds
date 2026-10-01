@@ -31,28 +31,14 @@ Every Section 5 Farkas certificate is also published as a self-describing data f
 python3 verification/check_certificates.py
 ```
 
-Appendix A is meant to be detailed enough that you can write your own checker instead of trusting this one. `verification/export_certificates.py` regenerates the data files from the original verifiers. To also regenerate the classification from scratch (about 5 minutes):
+Appendix A is meant to be detailed enough that you can write your own checker instead of trusting this one. `verification/export_certificates.py` regenerates the data files from the original verifiers. To also regenerate the classification from scratch and run the orbit–stabilizer mass check of Section 7.3 (about 5 minutes):
 
 ```sh
 python3 -m pip install -r requirements.txt
 bash verification/replay.sh --census
 ```
 
-### Second implementation
-
-[`verification/independent/`](verification/independent) is a second implementation, written separately from the first from the manuscript text. It is by the same author, so it is a cross-check rather than verification by a separate party. It re-derives the argument in these steps:
-
-- the Section 4 identity and congruence;
-- completeness of the case analysis for pairs of weight-four words;
-- every Section 5 relaxation, using a floating-point LP solver (corroboration only);
-- a separate census with a different graph encoding and an exact orbit–stabilizer mass check in every cell;
-- the hull and coset data of all 37 classes.
-
-It needs the packages in `requirements.txt`.
-
-```sh
-bash verification/independent/run_all.sh
-```
+The mass check (`verification/s7_mass_check.py`) recomputes the census with a different graph encoding. In every cell it checks that the number of labelled codes obtained by lengthening equals the sum of |G|/|Aut| over the classes found, which shows that no class was lost or counted twice. It also checks that the 37 classes it finds are the 37 saved representatives.
 
 ## Repository layout
 
@@ -61,13 +47,12 @@ bash verification/independent/run_all.sh
 | `paper/` | Manuscript source, PDF and build script (`bash paper/build_pdf.sh`, needs [Tectonic](https://tectonic-typesetting.github.io)) |
 | `verification/s4_*` … `verification/s7_*` | Exact checks, named by paper section (`.py` = Python, `.mjs` = JavaScript) |
 | `verification/s7_37_classes.json` | Generator matrices of the 37 length-ten classes (X part in bits 0–9, Z part in bits 10–19) |
-| `verification/replay.sh` | Runs all exact checks |
+| `verification/replay.sh` | Runs all exact checks (`--census` also reruns the classification and mass check) |
 | `verification/certificates/` | Section 5 certificates as labelled data (Appendix A); checked by `verification/check_certificates.py` |
-| `verification/independent/` | Second implementation and expected outputs |
 
 ## Citation and license
 
-See [`CITATION.cff`](CITATION.cff). An earlier version of the preprint is archived on Zenodo: [doi:10.5281/zenodo.22885774](https://doi.org/10.5281/zenodo.22885774). Code is released under the MIT License. The paper is released under CC BY 4.0.
+See [`CITATION.cff`](CITATION.cff). The preprint is archived on Zenodo: [doi:10.5281/zenodo.22885774](https://doi.org/10.5281/zenodo.22885774). Code is released under the MIT License. The paper is released under CC BY 4.0.
 
 ## Contact
 

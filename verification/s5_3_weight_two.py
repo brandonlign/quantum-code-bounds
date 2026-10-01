@@ -61,7 +61,7 @@ for n in (2,12):
     for j in range(n+1):
         for w in range(n+1):
             assert kraw(n,j,w)==kraw_poly(n,j,w)
-print("PASS independent binomial/polynomial quaternary transforms")
+print("PASS second binomial/polynomial quaternary transforms")
 
 # Enumerate the complete 16-vector physical Pauli space of TWO qubits,
 # with X bits 0..1 and Z bits 2..3.

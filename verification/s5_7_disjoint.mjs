@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Independent JavaScript replay of the full 648-column original-physical
+ * JavaScript replay of the full 648-column original-physical
  * 4+4+4+2 shadow Farkas certificate. No imports of Python, no floating point
  * LP solver, and no call to the first verifier.
  *
@@ -98,7 +98,7 @@ if(!(pos===403&&zero===245&&neg===0&&min===0&&
      constant===-125829120))
   throw Error("disjoint H4=3 proof identity mismatch: "+
     JSON.stringify({pos,zero,neg,min,constant}));
-console.log("INDEPENDENT JS PHYSICAL DISJOINT H4=3 FARKAS PASS");
+console.log("JS PHYSICAL DISJOINT H4=3 FARKAS PASS");
 console.log("64 four-site real Pauli cosets; six block-weight patterns");
 console.log("648/648 exact physical original-four-block columns");
 console.log("403 positive, 245 zero, NO negative coefficients");

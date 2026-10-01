@@ -1,5 +1,3 @@
-# Only needed for `replay.sh --census` and verification/independent/.
+# Only needed for `replay.sh --census` (the Section 7 census and mass check).
 # The default exact replay uses the Python standard library and Node.js only.
 pynauty==2.8.8.1
-numpy
-scipy

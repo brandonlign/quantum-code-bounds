@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent additive-quaternary lengthening census for the n=10 target.
+"""Additive-quaternary lengthening census for the n=10 target.
 
 This is a reconstruction of the lengthening route described in Grassl--Krotov--
 Sok--Solé (2026), specialised to the cells needed for additive

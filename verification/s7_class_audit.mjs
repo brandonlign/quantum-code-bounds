@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Independently checks the 37 saved additive codes: their binary dimension,
+ * Checks the 37 saved additive codes: their binary dimension,
  * minimum distance, symplectic hulls, and suffix coset minima.
  */
 import { readFileSync } from "node:fs";
@@ -131,7 +131,7 @@ const expected={9:[0,39,63],12:[2,39,63],14:[0,39,63],
 for(const row of audit)
   if(JSON.stringify(row.cumulative)!==JSON.stringify(expected[row.class]))
     throw Error("incorrect class "+row.class);
-console.log("INDEPENDENT JS EXACT CHECK PASS: all 37 actual stored ten-site codebooks");
+console.log("JS EXACT CHECK PASS: all 37 actual stored ten-site codebooks");
 console.log("25 classes hull != 4; hull dimensions:",JSON.stringify(counts));
 console.log("12/12 hull-four classes fail ORIGINAL-physical 8/32/59 coset-capacity bound");
 console.log("class: spectrum / cumulative [d<=1,d<=2,d<=3]");

@@ -80,7 +80,7 @@ def control_four_qubits():
                          for i in range(4) for j in range(2))
             assert direct == 2*c[q], (q, direct, c[q])
             assert signed == 2*sh[q], (q, signed, sh[q])
-    print('PASS independent four-qubit odd-weight affine-shadow control')
+    print('PASS four-qubit odd-weight affine-shadow control')
 
 
 def check():

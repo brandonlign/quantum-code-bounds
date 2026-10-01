@@ -48,7 +48,7 @@ for n in (4,10):
     for j in range(n+1):
         for w in range(n+1):
             assert kraw(n,j,w)==kraw_independent(n,j,w)
-print("PASS: independent polynomial and integer Krawtchouk constructions")
+print("PASS: polynomial and integer Krawtchouk constructions")
 
 # Exhaust ALL moving four-qubit R cosets to verify the physical
 # Bell enumerator relation, without assuming a paper classification.

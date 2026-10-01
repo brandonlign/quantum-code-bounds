@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-/* Independent BigInt replay of ORIGINAL-physical disjoint H4=3 no-go.
+/* BigInt replay of ORIGINAL-physical disjoint H4=3 no-go.
  * Literal four-site x,z Pauli cosets; original 4+4+4+2 split; polynomial
  * convolution Krawtchouk; exact 648-column integer dual. Node stdlib.
  */
@@ -97,7 +97,7 @@ assert.equal(positive,403);
 assert.equal(zero,245);
 assert.equal(rhs,-125829120n);
 assert.equal(rhs,BigInt(data.constant));
-console.log("INDEPENDENT EXACT ORIGINAL 4+4+4+2 SHADOW PASS");
+console.log("EXACT ORIGINAL 4+4+4+2 SHADOW PASS");
 console.log("64 literal <ZZZZ> cosets / 6 patterns per real block");
 console.log("648 original-physical subgroup coset columns");
 console.log("403 positive, 245 zero Farkas residuals; none negative");

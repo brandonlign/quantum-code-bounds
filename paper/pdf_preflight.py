@@ -93,7 +93,7 @@ def main() -> int:
             "author name": "Brandon Li",
             "abstract": "Abstract",
             "subtitle": "A signed-shadow proof and exhaustive additive-code classification",
-            "one-proof conclusion": "Conclusion",
+            "proof of main theorem": "Proof of the main theorem",
             "references": "References",
             "complete additive census": "37",
             "coset-capacity bound": "coset-capacity",

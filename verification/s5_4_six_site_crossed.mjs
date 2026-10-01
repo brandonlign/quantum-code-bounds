@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 /*
-Second-language, independently rebuilt EXACT six-site crossed-overlap subgroup
+JavaScript rebuild of the EXACT six-site crossed-overlap subgroup
 no-go. This JS source derives all physical prefix cosets and all signed
 split-MacWilliams coefficients with BigInt; its immutable multipliers
 must match the separate crossed-overlap Python verifier:

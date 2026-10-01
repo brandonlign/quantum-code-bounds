@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent exact audit of the *unconditional* 14-qubit low-weight inequality.
+"""Exact audit of the *unconditional* 14-qubit low-weight inequality.
 
 No code-purity assumption, no imported small-code table, no solver and no
 rank-specific automorphism enumeration. Rebuild each q=4 Krawtchouk coefficient

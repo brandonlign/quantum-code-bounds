@@ -2,7 +2,7 @@
 "use strict";
 /* Standalone SECOND-LANGUAGE original 2+12 weight-two stabilizer no-go.
  * Imports only immutable SPARSE integer multipliers copied from the
- * previous Python proof. Independently rebuilds all physical 2+12
+ * previous Python proof. Rebuilds all physical 2+12
  * polynomial Krawtchouk coefficients, 39 variables, 13 equality rows,
  * 130 inequality rows, 39 exact integer residuals and strict negative RHS.
  * No library, old G/E matrices, floats, Python, optimizer, external code
@@ -82,8 +82,8 @@ for(let col=0;col<N;col++){
  if(value>0n)positive++;
 }
 assert.equal(positive,17);
-console.log("PASS INDEPENDENT BIGINT ORIGINAL 2+12 SPLIT SHADOW");
+console.log("PASS BIGINT ORIGINAL 2+12 SPLIT SHADOW");
 console.log(JSON.stringify({physicalWeightCells:N,equalities:E.length,
  inequalities:G.length,positiveDualRows:13,equalityDualRows:10,
  positiveResidualCells:positive,contradiction:normalization.toString(),
- Krawtchouk:"independent polynomial convolution"}));
+ Krawtchouk:"polynomial convolution"}));

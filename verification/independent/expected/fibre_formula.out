@@ -1,9 +1,0 @@
-class idx 10 trial 0: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 19  d(S)=3
-class idx 10 trial 1: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 20  d(S)=3
-class idx 11 trial 0: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 21  d(S)=3
-class idx 11 trial 1: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 21  d(S)=3
-class idx 13 trial 0: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 22  d(S)=2
-class idx 13 trial 1: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 23  d(S)=3
-class idx 15 trial 0: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 14  d(S)=3
-class idx 15 trial 1: fibres=64 formula mismatches=0 nonzero-xi fibres with weight<=4: 15  d(S)=3
-TOTAL formula mismatches: 0

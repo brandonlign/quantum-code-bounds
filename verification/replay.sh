@@ -91,6 +91,8 @@ if [[ "$mode" == "census" ]]; then
   generators_path="$scratch_dir/s7_37_classes.json"
   run "$PYTHON" verification/s7_census.py \
     --write-generators "$generators_path"
+  # Section 7.3: orbit-stabilizer mass check (second census, own graph encoding).
+  run "$PYTHON" verification/s7_mass_check.py --generators "$generators_path"
 fi
 
 # Stage III: exact class-level hull and coset-capacity audit.

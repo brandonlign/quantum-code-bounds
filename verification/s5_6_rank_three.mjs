@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-/* Independently reconstruct ALL FOUR overlapping rank-three H4=3
+/* Reconstruct ALL FOUR overlapping rank-three H4=3
  * original-physical subgroup-model exact Farkas contradictions.
  * True ten-to-eleven-site prefix Pauli x|z cosets, direct polynomial
  * Krawtchouk convolution, 14-site genuine split and JS BigInt duals.
@@ -119,7 +119,7 @@ for(const [name,sets] of Object.entries(SETS)){
  summary.push({name,prefix_sites:U,suffix_sites:F,
   physical_pattern_types:patterns.length,variables:cert.columns,
   positive,zero,dual_constant:rhs.toString()});
- console.log("INDEPENDENT BigInt H4=3 no-go",name,
+ console.log("BigInt H4=3 no-go",name,
   U+"+"+F,"original sites",cert.columns,"columns",
   "rhs="+rhs.toString(),"positive="+positive,"zero="+zero);
 }

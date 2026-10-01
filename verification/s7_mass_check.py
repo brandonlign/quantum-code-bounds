@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
-"""Independent check: independent lengthening census + orbit-stabilizer mass check.
+"""Section 7.3: orbit-stabilizer mass check for the length-ten census.
 
-Codes: binary subspaces of F2^(2n); symbol i = bits (2i, 2i+1).
-Equivalence: coordinate permutation + any permutation of the 3 nonzero
-symbols per coordinate (= GL(2,2)), which also preserves the symplectic form.
+This script recomputes the lengthening census of Section 7 with a different
+graph encoding from s7_census.py, and checks in every cell that
 
-Graph encoding (different from the one in ../s7_census.py): vertices = codewords (color 0)
-and (coord, nonzero symbol) (color 1); codeword -- symbol vertex if the word
-has that symbol at that coord; the three symbol vertices of one coordinate
-form a triangle. Codeword vertices are pairwise non-adjacent, so triangles in
-color 1 are exactly the coordinate triples.
+    sum_P (m! 6^m / |Aut P|) ext_r(P)  =  sum_D ((m+1)! 6^(m+1) / |Aut D|),
 
-Mass check (Kaski-Ostergard style), independent of published counts:
-  #labelled codes in (m+1,k) = sum_{r} sum_{parent classes P in (m,k-r)}
-        (m! 6^m / |Aut P|) * ext_r(P)
-  with ext_0 = 1, ext_1 = 3 * #deep cosets, ext_2 = #ordered pairs (a,b)
-  of distinct nonzero deep quotient labels with a^b deep,
-  and must equal sum_{classes D in (m+1,k)} (m+1)! 6^(m+1) / |Aut D|.
-Each labelled D is counted exactly once on the left (its shortening at the
-last coordinate, and the data (r, labels, symbols) are determined by D).
+where P runs over parent classes, ext_r(P) counts labelled rank-r
+extensions keeping minimum distance 5, and D runs over the classes found.
+Each labelled code D is counted exactly once on the left, by its shortening
+at the last coordinate. Equality in a cell therefore shows that no class
+was lost or counted twice there. It does not use any published count.
+
+It then checks that the 37 classes found are the 37 committed
+representatives in s7_37_classes.json, as sets of canonical certificates.
+
+Encoding: a code is a list of generators in F2^(2n); symbol i is bits
+(2i, 2i+1). Equivalence is coordinate permutation together with any
+permutation of the three nonzero symbols at each coordinate (GL(2,2)).
+Graph: codeword vertices (colour 0) and (coordinate, nonzero symbol)
+vertices (colour 1); a codeword is joined to the symbols it uses, and the
+three symbol vertices of a coordinate form a triangle.
+
+Requires pynauty==2.8.8.1. Runtime: about two minutes.
+Usage: python3 verification/s7_mass_check.py [--generators FILE]
 """
+import argparse
 import json
-import sys
 from fractions import Fraction
 from itertools import combinations, product
 from math import factorial
-from pynauty import Graph, certificate, autgrp
+from pathlib import Path
+
+from pynauty import Graph, autgrp, certificate
 
 D = 5  # target minimum distance
 
@@ -136,19 +143,20 @@ def extensions(gens, n):
     return out, ext
 
 
-def main(maxn=10, target_k=10):
-    # cells[(n,k)] = list of (gens, |Aut|)
-    need = set()
-    for n in range(maxn, 3, -1):
-        pass
-    # required cells: (n,k) with k >= target_k - 2*(maxn-n), k <= 2n, k>=0
+def to_interleaved(v, n=10):
+    """Committed layout (X bits 0..n-1, Z bits n..2n-1) -> interleaved symbols."""
+    out = 0
+    for i in range(n):
+        out |= ((v >> i) & 1) << (2 * i)
+        out |= ((v >> (n + i)) & 1) << (2 * i + 1)
+    return out
+
+
+def census(maxn=10, target_k=10):
     cells = {(4, 0): [([], aut_order(graph([], 4)))]}
     assert cells[(4, 0)][0][1] == factorial(4) * 6 ** 4
-    report = []
     for n in range(5, maxn + 1):
-        ks = [k for k in range(0, 2 * n + 1)
-              if k >= target_k - 2 * (maxn - n) and k <= target_k]
-        for k in ks:
+        for k in range(max(0, target_k - 2 * (maxn - n)), target_k + 1):
             classes = {}
             lhs = Fraction(0)
             for r in (0, 1, 2):
@@ -160,26 +168,37 @@ def main(maxn=10, target_k=10):
                         c = certificate(G)
                         if c not in classes:
                             classes[c] = (g, aut_order(G))
-            lst = list(classes.values())
-            for g, a in lst:
+            found = list(classes.values())
+            for g, a in found:
                 assert (factorial(n) * 6 ** n) % a == 0
                 ws = [wt(v, n) for v in span(g) if v]
                 assert not ws or min(ws) >= D
                 assert len(span(g)) == 1 << k
-            rhs = sum(Fraction(factorial(n) * 6 ** n, a) for _, a in lst)
-            ok = lhs == rhs
-            line = f"cell n={n} k={k}: classes={len(lst)} mass_lhs={lhs} mass_rhs={rhs} match={ok}"
-            print(line, flush=True)
-            report.append(line)
-            assert ok, line
-            cells[(n, k)] = lst
-    tgt = cells[(maxn, target_k)]
-    with open("independent_census_n10k10.json", "w") as fh:
-        json.dump([g for g, _ in tgt], fh)
-    with open("independent_census_aut.json", "w") as fh:
-        json.dump([a for _, a in tgt], fh)
-    print("DONE", len(tgt), "classes in target cell")
+            rhs = sum(Fraction(factorial(n) * 6 ** n, a) for _, a in found)
+            print(f"cell n={n} k={k}: classes={len(found)} "
+                  f"labelled mass {lhs} = {rhs}: {lhs == rhs}", flush=True)
+            assert lhs == rhs
+            cells[(n, k)] = found
+    return cells[(maxn, target_k)]
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--generators",
+                    default=Path(__file__).resolve().parent / "s7_37_classes.json")
+    args = ap.parse_args()
+    found = census()
+    assert len(found) == 37
+    committed = [[to_interleaved(v) for v in g]
+                 for g in json.loads(Path(args.generators).read_text())]
+    mine = {certificate(graph(g, 10)) for g, _ in found}
+    theirs = {certificate(graph(g, 10)) for g in committed}
+    assert len(theirs) == 37 and mine == theirs
+    print("the 37 classes found are the 37 committed representatives")
+    auts = [aut_order(graph(g, 10)) for g in committed]
+    for i, a in enumerate(auts, 1):
+        print(f"class {i:2d}: |Aut| = {a}")
+    mass = sum(Fraction(factorial(10) * 6 ** 10, a) for a in auts)
+    assert mass == 2333060795842560
+    print(f"sum over the 37 classes of 10! 6^10 / |Aut| = {mass}")
+    print("ORBIT-STABILIZER MASS CHECK PASS")
