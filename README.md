@@ -15,22 +15,32 @@ This repository contains a computer-assisted proof that there is no qubit stabil
 
 ## Checking the proof
 
-You need Python 3.10 or newer and Node.js. No other packages are required.
+You need Python 3.10 or newer and Node.js. No other packages are required. The script finds a Python 3.10+ on your `PATH` automatically. On macOS the default `python3` is 3.9, so if you see a version error, install a newer Python or run `PYTHON=python3.11 bash verification/replay.sh`.
 
 ```sh
 bash verification/replay.sh
 ```
 
-This takes about 10 seconds. It checks every exact certificate, most of them in two separate implementations (Python and JavaScript BigInt), and checks the 37 saved classes. To also regenerate the classification from scratch (about 5 minutes):
+This takes about 15 seconds. It checks every exact certificate, most of them in two separate implementations (Python and JavaScript BigInt), and checks the 37 saved classes.
+
+### Checking Section 5 without reading the proof code
+
+Every Section 5 Farkas certificate is also published as a self-describing data file in [`verification/certificates/`](verification/certificates). Each file lists the blocks, the subgroup generators, the coset patterns and the labelled constraint rows with their integer multipliers, in the format defined in Appendix A of the paper. [`verification/check_certificates.py`](verification/check_certificates.py) is a short standalone checker (standard library only) that rebuilds every system from these files and the definitions in Appendix A alone:
+
+```sh
+python3 verification/check_certificates.py
+```
+
+Appendix A is meant to be detailed enough that you can write your own checker instead of trusting this one. `verification/export_certificates.py` regenerates the data files from the original verifiers. To also regenerate the classification from scratch (about 5 minutes):
 
 ```sh
 python3 -m pip install -r requirements.txt
 bash verification/replay.sh --census
 ```
 
-### Independent checks
+### Second implementation
 
-[`verification/independent/`](verification/independent) is a second implementation, written separately from the manuscript text. It re-derives the argument in these steps:
+[`verification/independent/`](verification/independent) is a second implementation, written separately from the first from the manuscript text. It is by the same author, so it is a cross-check rather than verification by a separate party. It re-derives the argument in these steps:
 
 - the Section 4 identity and congruence;
 - completeness of the case analysis for pairs of weight-four words;
@@ -52,7 +62,8 @@ bash verification/independent/run_all.sh
 | `verification/s4_*` … `verification/s7_*` | Exact checks, named by paper section (`.py` = Python, `.mjs` = JavaScript) |
 | `verification/s7_37_classes.json` | Generator matrices of the 37 length-ten classes (X part in bits 0–9, Z part in bits 10–19) |
 | `verification/replay.sh` | Runs all exact checks |
-| `verification/independent/` | Independent re-implementation and expected outputs |
+| `verification/certificates/` | Section 5 certificates as labelled data (Appendix A); checked by `verification/check_certificates.py` |
+| `verification/independent/` | Second implementation and expected outputs |
 
 ## Citation and license
 

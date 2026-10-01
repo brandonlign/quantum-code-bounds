@@ -13,10 +13,23 @@ cd "$repo_root"
 checkout_branch="$(git branch --show-current)"
 printf 'Proof replay checkout: %s (%s)\n' "$(git rev-parse --short=12 HEAD)" "${checkout_branch:-detached HEAD}"
 
-if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)'; then
-  echo "ERROR: Python 3.10+ is required; found $(python3 --version 2>&1)" >&2
+# Use $PYTHON if set; otherwise the first Python 3.10+ found on PATH.
+# (macOS ships python3 = 3.9, so plain python3 is often too old.)
+if [[ -z "${PYTHON:-}" ]]; then
+  for candidate in python3 python3.14 python3.13 python3.12 python3.11 python3.10; do
+    if command -v "$candidate" >/dev/null &&
+       "$candidate" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)'; then
+      PYTHON="$candidate"
+      break
+    fi
+  done
+fi
+if [[ -z "${PYTHON:-}" ]]; then
+  echo "ERROR: Python 3.10+ is required; found $(python3 --version 2>&1)." >&2
+  echo "Install a newer Python or set PYTHON=/path/to/python3.x" >&2
   exit 2
 fi
+echo "Using $PYTHON ($("$PYTHON" --version 2>&1))"
 if ! command -v node >/dev/null; then
   echo "ERROR: Node.js is required" >&2
   exit 2
@@ -44,46 +57,48 @@ run() {
 }
 
 # Stage I: original-physical shadows, subgroup cosets, and exact duals.
-run python3 verification/s4_low_weight_bound.py
-run python3 verification/s4_shadow_parity.py
+run "$PYTHON" verification/s4_low_weight_bound.py
+run "$PYTHON" verification/s4_shadow_parity.py
 run node verification/s4_shadow_parity.mjs
-run python3 verification/s5_3_weight_two.py
+run "$PYTHON" verification/s5_3_weight_two.py
 run node verification/s5_3_weight_two.mjs
-run python3 verification/s5_4_weight_three.py
+run "$PYTHON" verification/s5_4_weight_three.py
 run node verification/s5_4_weight_three.mjs
-run python3 verification/s5_4_bell.py
+run "$PYTHON" verification/s5_4_bell.py
 run node verification/s5_4_bell.mjs
 run node verification/s5_4_five_site.mjs
-run python3 verification/s5_4_six_site_same_letter.py
+run "$PYTHON" verification/s5_4_six_site_same_letter.py
 run node verification/s5_4_six_site_same_letter.mjs
-run python3 verification/s5_4_six_site_crossed.py
+run "$PYTHON" verification/s5_4_six_site_crossed.py
 run node verification/s5_4_six_site_crossed.mjs
 run node verification/s5_5_support_geometries.mjs
-run python3 verification/s5_6_rank_three.py
+run "$PYTHON" verification/s5_6_rank_three.py
 run node verification/s5_6_rank_three.mjs
-run python3 verification/s5_7_disjoint.py
+run "$PYTHON" verification/s5_7_disjoint.py
 run node verification/s5_7_disjoint.mjs
 run node verification/s5_7_disjoint_bigint.mjs
+# Same Section 5 certificates, rebuilt from the Appendix A data files alone.
+run "$PYTHON" verification/check_certificates.py
 
 # Stage II: the onto graph reduction and the exact physical control path.
-run python3 verification/s6_controls.py
-run python3 verification/s6_weight_five_bound.py
-run python3 verification/s6_lift_test.py
+run "$PYTHON" verification/s6_controls.py
+run "$PYTHON" verification/s6_weight_five_bound.py
+run "$PYTHON" verification/s6_lift_test.py
 run node verification/s7_hull_capacity.mjs
 run node verification/s7_class_audit.mjs
 
 if [[ "$mode" == "census" ]]; then
   generators_path="$scratch_dir/s7_37_classes.json"
-  run python3 verification/s7_census.py \
+  run "$PYTHON" verification/s7_census.py \
     --write-generators "$generators_path"
 fi
 
 # Stage III: exact class-level hull and coset-capacity audit.
-run python3 verification/s7_class_audit.py \
+run "$PYTHON" verification/s7_class_audit.py \
   --generators "$generators_path" \
   --output "$audit_path"
 
-python3 - "$audit_path" <<'PY'
+"$PYTHON" - "$audit_path" <<'PY'
 import json
 import sys
 

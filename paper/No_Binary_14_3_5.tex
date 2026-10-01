@@ -48,8 +48,9 @@ That word yields a ten-coordinate binary-additive code of size 1,024,
 minimum distance at least five, and symplectic hull dimension four. By
 exhaustive lengthening, we reconstruct all 37 equivalence classes of
 length-ten binary-additive codes of size 1,024 and minimum distance at
-least five. Of these, 12 have symplectic hull dimension four; the other
-25 do not, and the remaining 12 violate a necessary coset-capacity bound. Together with the known
+least five. Of these, 25 have symplectic hull dimension different from
+four, and each of the 12 with hull dimension four violates a necessary
+coset-capacity bound. Together with the known
 \(\left[\!\left[14,3,4\right]\!\right]\) construction, this proves
 \(d_{\max}(14,3)=4\) for binary stabilizer codes.
 \end{abstract}
@@ -325,7 +326,7 @@ H_{a,b} &=\sum_{p} p_{a} y_{p,b}.
 \end{aligned}
 \]
 
-The model requires only \(R\leq S\); it does not assume that \(R\) is all of \(S\cap V_{\mathrm{pref}}\). If \(S\) contains further prefix-supported words, they are still counted correctly, because \(S\) is a union of complete \(R\)-cosets. This is a necessary model for a real code. It deliberately forgets the actual prefix coset label, the suffix Pauli label, and all global linear compatibility among different suffixes. It therefore enlarges the feasible set. A contradiction in this relaxation excludes a physical code; feasibility would prove nothing.
+The model requires only \(R\leq S\); it does not assume that \(R\) is all of \(S\cap V_{\mathrm{pref}}\). If \(S\) contains further prefix-supported words, they are still counted correctly, because \(S\) is a union of complete \(R\)-cosets. This is a necessary model for a real code. Appendix~\ref{app:systems} defines every row and column of each such system exactly, and lists the coset patterns and certificate data. It deliberately forgets the actual prefix coset label, the suffix Pauli label, and all global linear compatibility among different suffixes. It therefore enlarges the feasible set. A contradiction in this relaxation excludes a physical code; feasibility would prove nothing.
 
 For every such model we use the following row families:
 
@@ -852,7 +853,7 @@ Every zero-count predecessor cell listed above is computed and verified empty ra
 
 For every candidate the census constructs a colored incidence graph with one vertex for every codeword, three nonzero-symbol vertices for every coordinate, and one coordinate-group vertex binding each triple of symbols. The colors separate the three vertex types. A color-preserving graph isomorphism is exactly a reordering of codewords, a coordinate permutation, and an arbitrary permutation of the three nonzero symbols in each coordinate. The latter is \(\operatorname{GL}(2,2)\). Thus the graph certificate gives a canonical additive-monomial equivalence test; the weight and pair-rank invariants only filter candidates before canonicalization. The graph-isomorphism implementation is based on nauty \cite{mckay-piperno}, via \texttt{pynauty} 2.8.8.1.
 
-Completeness does not rest on the published counts. The census keeps one representative for every certificate it generates, so no orbit reached by an extension is discarded. As an internal check that no orbit was lost or duplicated, an independent second census (\texttt{verification/independent/}) with a different graph encoding verifies, in every one of the 36 cells it computes, the orbit--stabilizer identity
+Completeness does not rest on the published counts. The census keeps one representative for every certificate it generates, so no orbit reached by an extension is discarded. As an internal check that no orbit was lost or duplicated, a second census implementation (\texttt{verification/independent/}) with a different graph encoding verifies, in every one of the 36 cells it computes, the orbit--stabilizer identity
 \[
 \sum_{P}\frac{m!\,6^{m}}{\lvert\operatorname{Aut}P\rvert}\,\operatorname{ext}_r(P)
 =\sum_{D}\frac{(m+1)!\,6^{m+1}}{\lvert\operatorname{Aut}D\rvert},
@@ -885,7 +886,7 @@ class & hull & \(\lvert\operatorname{Aut}\rvert\) & class & hull & \(\lvert\oper
 
 \subsection{Hull and coset-capacity results}\label{hull-and-coset-capacity-results}
 
-The census produces 37 generator matrices, each defining 1,024 words of minimum distance five. Separate audits recompute their ranks, distances, hull dimensions, and coset minima. The hull dimensions are
+The census produces 37 generator matrices, each defining 1,024 words of minimum distance five. Separate audit scripts recompute their ranks, distances, hull dimensions, and coset minima. The hull dimensions are
 
 \Needspace{12\baselineskip}
 {
@@ -964,7 +965,9 @@ With Python 3.10 or newer and Node.js, the command
 \end{center}
 replays every certificate of Sections~4--7, most of them in two separate implementations (Python and JavaScript with BigInt), and checks the 37 committed class representatives. The option \texttt{--census} also regenerates the classification from scratch, which takes a few minutes and requires \texttt{pynauty==2.8.8.1}. The script names follow the section numbers of this paper.
 
-A second, separately written set of checks in \texttt{verification/independent/} rebuilds the argument from the text: the Lemma~\ref{lem:low-weight} identity and parity congruence, the completeness of Table~\ref{tab:obstruction}, all Section~5 relaxations (with a floating-point LP solver, as corroboration only), an independent census with the orbit--stabilizer check of Section~\ref{equivalence-certificates}, and the hull and coset spectra of Table~\ref{tab:coset-capacity}.
+A second implementation in \texttt{verification/independent/}, written separately from the first from the manuscript text, rebuilds the argument: the Lemma~\ref{lem:low-weight} identity and parity congruence, the completeness of Table~\ref{tab:obstruction}, all Section~5 relaxations (with a floating-point LP solver, as corroboration only), an independent census with the orbit--stabilizer check of Section~\ref{equivalence-certificates}, and the hull and coset spectra of Table~\ref{tab:coset-capacity}. Both implementations were written by the author with the assistance described in the acknowledgments. They are cross-checks of one another, not verification by a separate party.
+
+For readers who prefer to check Section~5 without reading either implementation, every Farkas certificate is published as a self-describing data file in \texttt{verification/certificates/}, in the row-by-row format of Appendix~\ref{app:systems}. The short standalone checker \texttt{verification/check\_certificates.py} rebuilds each system from that specification alone. Writing a different checker from Appendix~\ref{app:systems} is intended to be a modest exercise.
 
 \section*{Acknowledgments}
 
@@ -1015,5 +1018,95 @@ M. Grassl, ``Bounds on the minimum distance of additive quantum codes, (n=14,k=3
 maintained code table, accessed 24 September 2026.
 \href{https://codetables.de/QECC.php?k=3&n=14&q=4}{codetables.de}.
 \end{thebibliography}
+
+\appendix
+\section{Exact specification of the Section 5 systems}\label{app:systems}
+
+This appendix defines every linear system of Section~5 in enough detail that a reader can rebuild it, and check its certificate, without reference to any code supplied by the author.
+
+\subsection{Variables}\label{app:variables}
+
+The fourteen qubits are split into consecutive blocks of sizes \(m_1,\dots,m_r\) and a suffix of size \(f\), as listed in Table~\ref{tab:app-systems}. For a block \(i\) with subgroup \(R_i\leq V_{m_i}\), compute the normalizer \(R_i^\perp\cap V_{m_i}\) and split it into complete \(R_i\)-cosets. Each coset \(Q\) has a weight histogram \(p(Q)=(p_0,\dots,p_{m_i})\) as in Section~5.1. The distinct histograms, sorted lexicographically, are the \emph{patterns} \(P_{i,1},P_{i,2},\dots\) of block \(i\).
+
+A column is a tuple \(y=(k_1,\dots,k_r,b)\): one pattern index for each block and a suffix weight \(0\leq b\leq f\). Columns are ordered lexicographically. Its variable counts the \(R\)-cosets of \(S\) (where \(R=R_1\oplus\dots\oplus R_r\)) whose block histograms are \(P_{1,k_1},\dots,P_{r,k_r}\) and whose suffix part has weight \(b\). In the two systems marked ``cells'' in Table~\ref{tab:app-systems}, the variables are instead the split counts \(H_{a,b}\) themselves, which is the same as taking the patterns of block 1 to be the unit vectors \(e_0,\dots,e_{m_1}\).
+
+A split cell is \(c=(a_1,\dots,a_r,a_f)\) with \(0\leq a_i\leq m_i\), \(0\leq a_f\leq f\), and \(|c|=\sum a_i+a_f\). The contribution of column \(y\) to the three enumerators in cell \(c\) is
+\[
+\begin{aligned}
+H_c(y)&=\prod_{i=1}^r P_{i,k_i}[a_i]\cdot[a_f=b],\\
+T_c(y)&=\prod_{i=1}^r\Bigl(\sum_{j}K^{m_i}_{a_i}(j)\,P_{i,k_i}[j]\Bigr)\cdot K^{f}_{a_f}(b),\\
+\mathtt{SH}_c(y)&=\prod_{i=1}^r\Bigl(\sum_{j}(-1)^jK^{m_i}_{a_i}(j)\,P_{i,k_i}[j]\Bigr)\cdot(-1)^bK^{f}_{a_f}(b),
+\end{aligned}
+\]
+which is the tensor-product form of the transforms in Section~3. Here \(T_c=2048\,C_c\) and \(\mathtt{SH}_c=2048\,\Sh_c\).
+
+\subsection{Rows}\label{app:rows}
+
+Each constraint is identified by a type and, where relevant, a cell. Table~\ref{tab:app-rows} gives the coefficient of column \(y\) in each type. Every row is a necessary condition on a hypothetical code containing \(R\), by Sections~3--5.1.
+
+\Needspace{16\baselineskip}
+{\small
+\begin{center}
+\captionof{table}{Row types. Equalities (\(=\)) take free-sign multipliers \(\nu\); inequalities (\(\leq\)) take multipliers \(\lambda\geq0\).}
+\label{tab:app-rows}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+type & coefficient of column \(y\) & relation \\
+\midrule
+\texttt{unit} & \(H_{(0,\dots,0)}(y)\) & \(=1\) \\
+\texttt{total} & \(\sum_c H_c(y)\) & \(=2048\) \\
+\texttt{low} \(c\), \(1\leq|c|\leq4\) & \(T_c(y)-2048\,H_c(y)\) & \(=0\) \\
+\texttt{zero} \(c\), \(|c|\in\{1,3\}\) & \(H_c(y)\) & \(=0\) \\
+\texttt{weight} \(w\) & \(\sum_{|c|=w}H_c(y)\) & \(=A_w\) \\
+\texttt{coset\_eq}, \texttt{coset\_le} & \(\sum_a \omega_a H_{(a,b)}(y)\) for given \(\omega,b\) & \(=0\), \(\leq0\) \\
+\texttt{incl} \(c\) & \(2048\,H_c(y)-T_c(y)\) & \(\leq0\) \\
+\texttt{cnonneg} \(c\) & \(-T_c(y)\) & \(\leq0\) \\
+\texttt{shadow} \(c\) & \(-\mathtt{SH}_c(y)\) & \(\leq0\) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+}
+
+The \texttt{weight} rows use only the values \(A_1=A_2=A_3=0\) and the branch assumption \(A_4=3\), and appear only in Sections~5.6--5.7. The \texttt{zero} row uses \(A_1=0\) from Lemma~\ref{lem:low-weight} and appears only in Section~5.4.2. The \texttt{coset} rows appear only in the two ``cells'' systems, where they encode the coset relations stated in Sections~5.3 and~5.4.2: \(H_{2,b}\geq H_{0,b}\), \(H_{1,b}=0\), and \(H_{4,b}=H_{2,b}+3H_{0,b}\). Each such relation is implied by every coset pattern of its subgroup, which a checker should confirm.
+
+\subsection{Certificates}\label{app:certificates}
+
+A certificate is a finite list of (row, multiplier) pairs. For each system, the residual \(c(y)=\sum\lambda_\rho\,G_\rho(y)+\sum\nu_\rho\,M_\rho(y)\) must satisfy \(c(y)\geq0\) in every column, with \(\nu\cdot\rhs<0\). Section~5.2 shows that no code satisfies the system in that case. Table~\ref{tab:app-systems} lists all eleven systems. The multipliers themselves are in \texttt{verification/certificates/}, one JSON file per row of the table. Each file contains the block sizes, the subgroup generators, the coset patterns with multiplicities, and the labelled rows with their integer multipliers. The certificates are sparse: they have between 22 and 111 nonzero multipliers.
+
+\Needspace{18\baselineskip}
+{\small
+\setlength{\tabcolsep}{3pt}
+\begin{center}
+\captionof{table}{The eleven Section~5 systems. Blocks give \((m_1,\dots,m_r;f)\). ``Pat.'' is the number of coset patterns per block. Generators act on the block sites in order, and in Section~5.7 each of the three blocks carries \(\mathtt{ZZZZ}\).}
+\label{tab:app-systems}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}Xlrrrr@{}}
+\toprule
+\S & generators of \(R\) & blocks & pat. & columns & rows used & \(\nu\cdot\rhs\) \\
+\midrule
+5.3 & \(\mathtt{ZZ}\) & \((2;12)\) & cells & 39 & 23 & \(-2571108352\) \\
+5.4.1 & \(\mathtt{ZZZ}\) & \((3;11)\) & 3 & 36 & 22 & \(-22528\) \\
+5.4.2 & \(\mathtt{XXXX},\mathtt{ZZZZ}\) & \((4;10)\) & cells & 55 & 39 & \(-320017816092672\) \\
+5.4.3 & \(\mathtt{XXZZI},\mathtt{ZZZIZ}\) & \((5;9)\) & 9 & 90 & 38 & \(-52501014528\) \\
+5.4.4 & \(\mathtt{ZZZZII},\mathtt{ZZIIZZ}\) & \((6;8)\) & 13 & 117 & 25 & \(-8820736\) \\
+5.4.4 & \(\mathtt{ZZZZII},\mathtt{XXIIXX}\) & \((6;8)\) & 14 & 126 & 27 & \(-22212608\) \\
+5.6 & three distinct intersections & \((9;5)\) & 40 & 240 & 32 & \(-86470656\) \\
+5.6 & one common site & \((10;4)\) & 27 & 135 & 33 & \(-9031680\) \\
+5.6 & two intersections & \((10;4)\) & 60 & 300 & 34 & \(-20484096\) \\
+5.6 & one intersection & \((11;3)\) & 74 & 296 & 33 & \(-61440\) \\
+5.7 & \(\mathtt{ZZZZ}\) on each block & \((4,4,4;2)\) & 6,6,6 & 648 & 111 & \(-125829120\) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+}
+
+The Section~5.6 generators are the \(\mathtt{Z}\)-only words on the supports in Table~\ref{tab:support-geometry}. The patterns of the 5.4.1, 5.4.2 and 5.7 blocks appear in Sections~5.4.1, 5.4.2 and Table~\ref{tab:block-patterns}. For the remaining two-generator blocks, the patterns (written \((p_0,\dots,p_m)\!:\)multiplicity) are:
+
+\begin{itemize}
+\item \(\langle\mathtt{XXZZI},\mathtt{ZZZIZ}\rangle\): \mbox{\((0,0,0,0,4,0)\!:\!12\)}, \mbox{\((0,0,0,1,0,3)\!:\!8\)}, \mbox{\((0,0,0,2,0,2)\!:\!12\)}, \mbox{\((0,0,0,3,0,1)\!:\!12\)}, \mbox{\((0,0,0,4,0,0)\!:\!1\)}, \mbox{\((0,0,1,0,3,0)\!:\!12\)}, \mbox{\((0,0,2,0,2,0)\!:\!3\)}, \mbox{\((0,1,0,2,0,1)\!:\!3\)}, \mbox{\((1,0,0,0,3,0)\!:\!1\)}.
+\item \(\langle\mathtt{ZZZZII},\mathtt{ZZIIZZ}\rangle\): \mbox{\((0,0,0,0,0,0,4)\!:\!16\)}, \mbox{\((0,0,0,0,0,4,0)\!:\!24\)}, \mbox{\((0,0,0,0,2,0,2)\!:\!24\)}, \mbox{\((0,0,0,0,3,0,1)\!:\!64\)}, \mbox{\((0,0,0,0,4,0,0)\!:\!12\)}, \mbox{\((0,0,0,1,0,3,0)\!:\!64\)}, \mbox{\((0,0,0,2,0,2,0)\!:\!24\)}, \mbox{\((0,0,0,4,0,0,0)\!:\!2\)}, \mbox{\((0,0,1,0,2,0,1)\!:\!12\)}, \mbox{\((0,0,2,0,2,0,0)\!:\!6\)}, \mbox{\((0,0,3,0,0,0,1)\!:\!1\)}, \mbox{\((0,1,0,2,0,1,0)\!:\!6\)}, \mbox{\((1,0,0,0,3,0,0)\!:\!1\)}.
+\item \(\langle\mathtt{ZZZZII},\mathtt{XXIIXX}\rangle\): \mbox{\((0,0,0,0,0,4,0)\!:\!32\)}, \mbox{\((0,0,0,0,1,0,3)\!:\!16\)}, \mbox{\((0,0,0,0,2,0,2)\!:\!32\)}, \mbox{\((0,0,0,0,3,0,1)\!:\!40\)}, \mbox{\((0,0,0,0,4,0,0)\!:\!16\)}, \mbox{\((0,0,0,1,0,3,0)\!:\!48\)}, \mbox{\((0,0,0,2,0,2,0)\!:\!32\)}, \mbox{\((0,0,0,3,0,1,0)\!:\!4\)}, \mbox{\((0,0,1,0,1,0,2)\!:\!8\)}, \mbox{\((0,0,1,0,2,0,1)\!:\!16\)}, \mbox{\((0,0,1,0,3,0,0)\!:\!5\)}, \mbox{\((0,0,2,0,1,0,1)\!:\!2\)}, \mbox{\((0,1,0,1,0,2,0)\!:\!4\)}, \mbox{\((1,0,0,0,2,0,1)\!:\!1\)}.
+\end{itemize}
+
+The 40--74 patterns of the Section~5.6 blocks are too long to print, but they are determined by the generators. They are listed in the certificate files, and \texttt{check\_certificates.py} recomputes them before using them.
 
 \end{document}
